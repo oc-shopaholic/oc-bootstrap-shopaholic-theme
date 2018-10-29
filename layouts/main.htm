@@ -9,9 +9,24 @@ function onInit()
 ==
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ path_css }}">
+    {% styles %}
 </head>
 <body>
+    <div id="site-header" class="site-header">
+        {% partial 'header/header' %}
+    </div>
+    <div id="site-content" class="site-content">
+        {% partial 'content/content' %}
+    </div>
+    <div id="site-footer" class="site-footer">
+        {% partial 'footer/footer' %}
+    </div>
+
 <script src="{{ path_js }}"></script>
+    {% framework extras %}
+    {% scripts %}
 </body>
 </html>
