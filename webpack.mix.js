@@ -26,7 +26,8 @@ mix.setPublicPath('assets/');
 mix.stylelint();
 
 mix.js('./common.js', 'js')
-	.sass('./common.scss', 'css');
-
+  .sass('./common.scss', 'css').options({
+    processCssUrls: false
+});
 
 mix.version();

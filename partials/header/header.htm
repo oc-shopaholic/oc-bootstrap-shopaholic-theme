@@ -1,31 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Logo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-            </li>
-            {% for i in 0..2 %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link 1</a>
-                </li>
-            {% endfor %}
-        </ul>
-        {#<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>#}
-        <div class="input-group col-md-4">
-            <input class="form-control py-2" type="search" value="search" id="example-search-input">
-            <span class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">
-            <i class="fa fa-search"></i>
+<header class="header container-fluid fixed-top">
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-      </span>
+
+        <div class="row collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="col navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                </li>
+                {% for i in 0..2 %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 1</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="input-group col-lg-3 col-12 header__search">
+                <input class="form-control py-2 border-right-0 border" type="search" placeholder="search" id="example-search-input">
+                <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border btn_bg-white" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+            </div>
+            <ul class="col-auto social-icon__list">
+                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook"></i></a></li>
+                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram"></i></a></li>
+                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter"></i></a></li>
+            </ul>
+            <a href="#" class="col-auto header__cart">
+                <i class="fa fa-shopping-cart"></i>Cart <span class="header__cart-badge">3</span>
+            </a>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
+
+

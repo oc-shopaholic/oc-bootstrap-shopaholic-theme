@@ -1,4 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
+@import '~font-awesome/scss/_variables.scss';
+@import './css/variables';
+@import '~font-awesome/scss/font-awesome.scss';
 
+@import "./css/global";
+@import "./partials/header/header";
+@import "./partials/footer/footer";
 @import "./partials/product/product-tab/product-tab.scss";
-
