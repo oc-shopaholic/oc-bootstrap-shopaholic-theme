@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 mix.setPublicPath('assets/');
 
 mix.js('./common.js', 'js')
-  .sass('./common.scss', 'css');
+  .sass('./common.scss', 'css').options({
+    processCssUrls: false
+});
 
 mix.version();
