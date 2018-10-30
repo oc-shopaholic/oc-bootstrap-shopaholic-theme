@@ -1,6 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import '~font-awesome/scss/_variables.scss';
-$fa-font-path: "./../fonts/vendor/font-awesome";
+@import './css/variables';
 @import '~font-awesome/scss/font-awesome.scss';
 
 @import "./partials/header/header";

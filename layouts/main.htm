@@ -15,14 +15,13 @@ function onInit()
     {% styles %}
 </head>
 <body>
-   {% partial 'header/header' %}
+    {% partial 'header/header' %}
 
     <div id="site-content" class="site-content">
         {% partial 'content/content' %}
     </div>
-    <div id="site-footer" class="site-footer">
-        {% partial 'footer/footer' %}
-    </div>
+
+    {% partial 'footer/footer' %}
 
 <script src="{{ path_js }}"></script>
     {% framework extras %}
