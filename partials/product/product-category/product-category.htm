@@ -1,0 +1,126 @@
+{% set category = {
+    1: {
+        name: 'New products',
+        list: {
+            1: {
+                title: 'Catdoc',
+                price: '666',
+                oldPrice: '999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+            2: {
+                title: 'Pepelats',
+                price: '1666',
+                oldPrice: '9999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200',
+                sale: true
+            },
+            3: {
+                title: 'AK-47',
+                price: '1212',
+                oldPrice: '1213.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+        }
+    },
+    2: {
+        name: 'Top sellers',
+        list: {
+            1: {
+                title: 'Catdoc',
+                price: '666',
+                oldPrice: '999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+            2: {
+                title: 'Pepelats',
+                price: '1666',
+                oldPrice: '9999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200',
+                sale: true
+            },
+            3: {
+                title: 'AK-47',
+                price: '1212',
+                oldPrice: '1213.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+        }
+    },
+    3: {
+        name: 'Random Product',
+        list: {
+            1: {
+                title: 'Catdoc',
+                price: '666',
+                description: 'Best pet for children',
+                oldPrice: '999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+            2: {
+                title: 'Pepelats',
+                price: '1666',
+                description: 'wtf',
+                oldPrice: '9999.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200',
+                sale: true
+            },
+            3: {
+                title: 'AK-47',
+                price: '1212',
+                description: 'Best gift for your son',
+                oldPrice: '1213.99',
+                currency: 'BYN',
+                href: 'https://picsum.photos/200'
+            },
+        }
+    },
+} %}
+
+<section class="product-category container">
+    <div class="row">
+        {% for item in category %}
+        <div class="col-lg-4 col-md-12 col-12 pt-5">
+                <hr>
+                    <h4 class="product-category__title text-center font-weight-bold text-black-50">{{ item.name }}</h4>
+                <hr>
+                <ul class="product-category__list">
+                    {% for el in item.list %}
+                    {% set isSale = el.sale is not empty ? 'text-danger' : '' %}
+
+                    <li class="row mt-5 py-2 mb-4 align-items-center flex-row product-category__list-item">
+                        <div class="col-5">
+                            <a href="#" class="product-category__image">
+                                <img src="{{ el.href }}" class="img-fluid" alt="{{ el.description }}">
+                            </a>
+                        </div>
+                        <div class="product-category__list-item-info col-7 d-flex flex-column justify-content-between align-self-stretch">
+                            <a href="#" class="product-category__title-link text-dark">
+                                <b class="product-category__title">
+                                    {{ el.title }}
+                                </b>
+                            </a>
+                            <div class="product-category__price-bar d-flex flex-column mt-auto">
+                                <span class="product-category__current-price pr-1 font-weight-bold {{ isSale }}">
+                                    {{ el.price }} {{ el.currency }}
+                                </span>
+                                <span class="product-category__old-price text-muted pr-1">
+                                    <s>{{ el.oldPrice }} {{ el.currency }}</s>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>

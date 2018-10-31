@@ -62,14 +62,14 @@
     </ul>
     <div class="tab-content product-tab__content">
         {% for tab in tabPanel %}
-                {% set active = loop.first ? 'show active' : '' %}
-                <div class="tab-pane fade {{ active }}" id="{{ tab.id }}" role="tabpanel">
-                    <div class="row">
-                        {% for obProduct in obProductList %}
-                            {% partial 'product/product-card/product-card' obProduct=obProduct %}
-                        {% endfor %}
-                    </div>
+            {% set active = loop.first ? 'show active' : '' %}
+            <div class="tab-pane fade {{ active }}" id="{{ tab.id }}" role="tabpanel">
+                <div class="row">
+                    {% for obProduct in obProductList %}
+                        {% partial 'product/product-card/product-card' obProduct=obProduct %}
+                    {% endfor %}
                 </div>
+            </div>
         {% endfor %}
     </div>
 </section>
