@@ -9,7 +9,7 @@ export default new class BtnChangeQty {
     }
 
     eventHandlers() {
-        if(!$(this.productQtySelector)) {
+        if(!$(this.productQtySelector).length) {
             return;
         }
 
