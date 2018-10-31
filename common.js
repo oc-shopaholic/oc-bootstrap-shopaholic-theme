@@ -1,6 +1,6 @@
-window.$ = window.jQuery = require('jquery')
-require('popper.js')
-require('bootstrap')
+window.$ = window.jQuery = require('jquery');
+require('popper.js');
+require('bootstrap');
 
 $(() => { // Shorthand for $( document ).ready()
 "use strict";
@@ -9,5 +9,6 @@ $(() => { // Shorthand for $( document ).ready()
   // --------------------------------------------------------------------- //
 
   // Example
-  console.log('ready!')
-})
+  console.log('ready!');
+  require('./partials/product/product-card-detailed/product-card-detailed');
+});

@@ -1,0 +1,57 @@
+{% set obProduct = {
+    name: 'Lorem ipsum',
+    imgSrc: 'https://picsum.photos/200',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque autem dolor exercitationem explicabo iure laudantium molestias, necessitatibus, officia optio pariatur perspiciatis placeat, praesentium qui quod recusandae repellat sunt voluptas?',
+    brand: 'The Best',
+    category: 'TopSeller',
+    currentPrice: '99.99',
+    oldPrice: '129.00',
+    currency: 'BYN'
+} %}
+
+<section class="container shadow p-3 mb-5 bg-white rounded product-page-detailed pb-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <img class="product-detailed__img" src="{{ obProduct.imgSrc }}" alt="">
+        </div>
+        <div class="col-lg-6">
+            <h1>{{ obProduct.name }}</h1>
+            <div class="product-card__price-bar mb-3">
+                <span class="product-card__current-price pr-2 font-weight-bold text-danger">
+                    {{ obProduct.currentPrice }}  {{ obProduct.currency }}
+                </span>
+                    <span class="product-card__old-price text-muted pr-2">
+                    <s>{{ obProduct.oldPrice }} {{ obProduct.currency }}</s>
+                </span>
+            </div>
+            <p class="product-detailed__description">
+                {{ obProduct.description }}
+            </p>
+            <p class="product-detailed__brand">
+                <span class="font-weight-bold">
+                    Brand:
+                </span>
+                {{ obProduct.brand }}
+            </p>
+            <p class="product-detailed__category">
+                <span class="font-weight-bold">
+                    Category:
+                </span>
+                <a href="#" class="product-detailed__category-link">{{ obProduct.category }}</a> {# TODO: add link for category #}
+            </p>
+            <div class="input-group mb-3 product-detailed__btn-qty">
+                <button class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="minus" type="button">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <input type="text" class="product-detailed__btn-qty-input" placeholder="0">
+                <button class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="plus" type="button">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <button class="btn btn-lg btn-dark" type="button">
+                <i class="fa fa-shopping-cart"></i>Add to cart
+            </button>
+        </div>
+    </div>
+</section>
+

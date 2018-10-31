@@ -1,0 +1,25 @@
+.product-detailed__img {
+  width: 100%;
+
+  @media (max-width: 991px) {
+    margin-bottom: 25px;
+  }
+}
+
+.product-detailed__category-link {
+  color: #343a40;
+  transition-timing-function: ease-in;
+  transition-duration: .2s;
+  transition-property: opacity;
+
+  &:hover {
+    color: #343a40;
+    text-decoration: none;
+    opacity: .75;
+  }
+}
+
+.product-detailed__btn-qty-input {
+  width: 50px;
+  text-align: center;
+}
