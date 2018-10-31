@@ -1,0 +1,22 @@
+.product-card__category-title {
+  font-size: .75rem;
+}
+
+.product-card__title {
+  font-size: 1.5rem;
+
+  &:hover {
+    text-decoration: none;
+    opacity: .7;
+    transition-timing-function: ease-in;
+    transition-duration: .2s;
+    transition-property: opacity;
+  }
+}
+
+.product-card__link {
+
+  &:hover {
+    text-decoration: none;
+  }
+}
