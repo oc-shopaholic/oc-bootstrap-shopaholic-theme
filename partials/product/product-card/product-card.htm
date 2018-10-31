@@ -1,7 +1,6 @@
 
 {% set isSale = obProduct.sale is not empty ? 'text-danger' : '' %}
-{% set withASide = (aSide != true) ? 'col-lg-4 col-md-12' : '' %}
-<div class="{{ withASide }} mb-4">
+<div class="mb-4">
   <div class="product-card card shadow" data-id="{{ obProduct.id }}">
     <a class="product-card__link product-card__link_img" href="{{ obProduct.productLink }}">
         <img class="product-card__img card-img-top" src="{{ obProduct.imagePath }}" alt="{{ obProduct.title }}">

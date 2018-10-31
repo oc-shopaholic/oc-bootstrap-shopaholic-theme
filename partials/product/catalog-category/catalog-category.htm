@@ -16,6 +16,10 @@
         name: 'Dwarf States',
         href: '#'
     },
+        4: {
+        name: 'Dwarf States',
+        href: '#'
+    },
 } %}
 
 <section class="category container-fluid navbar navbar-expand-lg navbar-dark bg-primary">
@@ -28,15 +32,15 @@
         <div class="navbar-collapse collapse" id="categoryNav">
             <ul class="category__list navbar-nav">
                 {% for elm in category %}
-                {% if elm.isActive != true %}
-                <li class="category__item nav-item mr-2 {{ active }}">
-                    <a href="{{ elm.href }}" class="category__link nav-link">{{ elm.name }}</a>
-                </li>
-                {% else %}
-                <li class="category__item nav-item mr-2 active category__item_active nav-link font-weight-bold">
-                    {{ elm.name }}
-                </li>
-                {% endif %}
+                    {% if elm.isActive != true %}
+                    <li class="category__item nav-item mr-2 {{ active }}">
+                        <a href="{{ elm.href }}" class="category__link nav-link">{{ elm.name }}</a>
+                    </li>
+                    {% else %}
+                    <li class="category__item nav-item mr-2 active category__item_active nav-link font-weight-bold">
+                        {{ elm.name }}
+                    </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>
