@@ -1,0 +1,24 @@
+.product-category__list {
+  padding-left: 0;
+}
+
+.product-category__list-item {
+
+  @media (min-width: 991px) {
+    &:hover {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+      transition-timing-function: ease-in;
+      transition-duration: .2s;
+      transition-property: box-shadow;
+    }
+  }
+}
+
+.product-category__current-price {
+  font-size: .85rem;
+}
+
+
+.product-category__old-price {
+  font-size: .85rem;
+}
