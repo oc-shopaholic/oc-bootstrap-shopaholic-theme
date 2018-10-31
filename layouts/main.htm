@@ -15,11 +15,9 @@ function onInit()
     {% styles %}
 </head>
 <body>
-    <div id="site-header" class="site-header">
-        {% partial 'header/header' %}
-    </div>
-    <div id="site-content" class="site-content">
-        {% partial 'content/content' %}
+    {% partial 'header/header' %}
+    <div class="container">
+        {% page %}
     </div>
     <div id="site-footer" class="site-footer">
         {% partial 'footer/footer' %}

@@ -1,0 +1,30 @@
+
+
+<div class="col-lg-4 col-md-12 mb-4">
+  <div class="product-card card shadow" data-id="{{ obProduct.id }}">
+    <a class="product-card__link" href="{{ obProduct.productLink }}">
+        <img class="product-card__img card-img-top" src="{{ obProduct.imagePath }}" alt="{{ obProduct.title }}">
+    </a>
+    <div class="card-body product-card__body">
+        <a class="product-card__title-category text-black-50" href="{{ obProduct.categoryLink }}">
+            <u><h3 class="card-title product-card__title">{{ obProduct.category }}</h3></u>
+        </a>
+        <a class="product-card__link" href="{{ obProduct.productLink }}">
+            <h3 class="card-title product-card__title text-dark">{{ obProduct.name }}</h3>
+        </a>
+        <div class="product-card__price-bar">
+            <span class="product-card__current-price pr-2 font-weight-bold">
+                {{ obProduct.currentPrice }}  {{ obProduct.currency }}
+            </span>
+            <span class="product-card__old-price text-muted">
+                <s>{{ obProduct.oldPrice }} {{ obProduct.currency }}</s>
+            </span>
+            <span href="#" aria-label="Add to cart">
+                <i class="fa fa-cart-plus"></i>
+            </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+

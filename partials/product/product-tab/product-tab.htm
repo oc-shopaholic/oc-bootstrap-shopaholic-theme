@@ -1,0 +1,72 @@
+{% set tabPanel = {
+    1: {
+        name: 'Bestsellers',
+        id: 'bestSellers',
+    },
+    2: {
+        name: 'Top Offers',
+        id: 'topOffer',
+    },
+    3: {
+        name: 'Best rated',
+        id: 'bestRated',
+    },
+} %}
+
+
+{% set obProductList = {
+    1: {
+        id: 'q1',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Мопс',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Охрана',
+        currentPrice: 666,
+        oldPrice: 777,
+        currency: 'BYN',
+    },
+    2: {
+        id: 'q2',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Кошка',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Предметы роскоши',
+        currentPrice: 333,
+        oldPrice: 999.99,
+        currency: 'BYN',
+    },
+    3: {
+        id: 'q3',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Ктулху',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Древние боги',
+        currentPrice: 1333,
+        oldPrice: 1999.99,
+        currency: 'BYN',
+    }
+} %}
+
+<ul class="product-tab nav nav-pills bg-secondary mb-3 nav-justified lighten-3 mx-0 shadow" id="product-tab" role="tablist">
+    {% for tab in tabPanel %}
+        {% set active = loop.first ? 'active' : '' %}
+        <li class="nav-item">
+            <a class="nav-link {{ active }} text-white" data-toggle="pill" href="#{{ tab.id }}" role="tab">{{ tab.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<div class="tab-content product-tab__content">
+    {% for tab in tabPanel %}
+            {% set active = loop.first ? 'show active' : '' %}
+            <div class="tab-pane fade {{ active }}" id="{{ tab.id }}" role="tabpanel">
+                <div class="row">
+                    {% for obProduct in obProductList %}
+                        {% partial 'product/product-card/product-card' obProduct=obProduct %}
+                    {% endfor %}
+                </div>
+            </div>
+    {% endfor %}
+</div>
