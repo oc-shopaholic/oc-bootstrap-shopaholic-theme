@@ -100,7 +100,7 @@
         <ul class="catalog__list col-12 list-unstyled">
             <div class="row flex-wrap">
                 {% for obProduct in obProductList %}
-                    <li class="catalog__item col-lg-4 col-md-12">
+                    <li class="catalog__item col-lg-4 col-sm-6 col-12">
                         {% partial 'product/product-card/product-card' obProduct=obProduct %}
                     </li>
                 {% endfor %}
