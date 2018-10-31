@@ -14,14 +14,14 @@ function onInit()
     <link rel="stylesheet" href="{{ path_css }}">
     {% styles %}
 </head>
-<body>
+<body class="body">
     {% partial 'header/header' %}
-    <div class="container">
+
+    <div class="site-content container">
         {% page %}
     </div>
-    <div id="site-footer" class="site-footer">
-        {% partial 'footer/footer' %}
-    </div>
+
+    {% partial 'footer/footer' %}
 
 <script src="{{ path_js }}"></script>
     {% framework extras %}
