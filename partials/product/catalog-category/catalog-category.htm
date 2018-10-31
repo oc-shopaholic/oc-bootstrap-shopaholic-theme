@@ -1,0 +1,44 @@
+{% set category = {
+    1: {
+        name: 'Ancient gods',
+        href: '#'
+    },
+    2: {
+        name: 'Luxuries',
+        href: '#'
+    },
+    3: {
+        name: 'Protection',
+        href: '#',
+        isActive: true
+    },
+    4: {
+        name: 'Dwarf States',
+        href: '#'
+    },
+} %}
+
+<section class="category container-fluid navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <b class="category__title text-white font-weight-bold pr-4">Categories</b>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNav" aria-controls="categoryNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-light"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="categoryNav">
+            <ul class="category__list navbar-nav">
+                {% for elm in category %}
+                {% if elm.isActive != true %}
+                <li class="category__item nav-item mr-2 {{ active }}">
+                    <a href="{{ elm.href }}" class="category__link nav-link">{{ elm.name }}</a>
+                </li>
+                {% else %}
+                <li class="category__item nav-item mr-2 active category__item_active nav-link font-weight-bold">
+                    {{ elm.name }}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
