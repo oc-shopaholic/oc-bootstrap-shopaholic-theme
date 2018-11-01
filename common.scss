@@ -4,6 +4,7 @@
 @import '~font-awesome/scss/font-awesome.scss';
 
 @import "./css/global";
+@import "./partials/content/wysiwyg/wysiwyg";
 @import "./partials/header/header";
 @import "./partials/content/breadcrumbs/breadcrumbs";
 @import "./partials/content/carousel/carousel";
@@ -12,5 +13,6 @@
 @import "./partials/product/product-category/product-category";
 @import "./partials/product/catalog-category/catalog-category";
 @import "./partials/product/paging/paging";
+@import "./partials/product/product-card-detailed/product-card-detailed";
 @import "./partials/content/banner/banner";
 @import "./partials/footer/footer";
