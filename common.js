@@ -11,4 +11,5 @@ $(() => { // Shorthand for $( document ).ready()
   // Example
   console.log('ready!');
   require('./partials/product/product-card-detailed/product-card-detailed');
+  require('./partials/content/form/formValidation');
 });
