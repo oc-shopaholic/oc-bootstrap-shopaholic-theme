@@ -1,0 +1,16 @@
+.order-complete__text {
+  font-size: 21vw;
+  line-height: 1.1;
+
+  @media (min-width: 577px) {
+    font-size: 100px;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 120px;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 150px;
+  }
+}
