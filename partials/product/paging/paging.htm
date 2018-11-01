@@ -1,0 +1,32 @@
+{#  For disabling prev, next or other buttons you should use class 'disabled',
+    for active page - 'active' class and render node '<span class="sr-only">(current)</span>' (a11y requirement)
+#}
+
+<nav class="mb-4" aria-label="{{ pagingLabel }}">
+    <ul class="pagination pagination-circle justify-content-center container">
+        <li class="page-item mr-2 disabled">
+            <a class="page-link rounded-circle border-0 py-2 d-none d-md-block" href="#">First</a>
+        </li>
+        <li class="page-item mr-2">
+            <a class="page-link rounded-circle border-0 py-2" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item mr-2 active"><a class="page-link rounded-circle py-2" href="#">1</a>
+            <span class="sr-only">(current)</span>
+        </li>
+        <li class="page-item mr-2"><a class="page-link rounded-circle py-2" href="#">2</a></li>
+        <li class="page-item mr-2"><a class="page-link rounded-circle py-2" href="#">3</a></li>
+        <li class="page-item mr-2"><a class="page-link rounded-circle py-2" href="#">4</a></li>
+        <li class="page-item mr-2">
+            <a class="page-link rounded-circle border-0 py-2" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        <li class="page-item mr-2">
+            <a class="page-link border-0 rounded-circle py-2 d-none d-md-block" href="#">Last</a>
+        </li>
+    </ul>
+</nav>
