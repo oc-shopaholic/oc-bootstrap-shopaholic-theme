@@ -1,0 +1,36 @@
+.error__figures {
+  font-size: 40vw;
+
+  @media (min-width: 768px) {
+    font-size: 200px;
+  }
+
+  @media (min-width: 992px) {
+    font-size: 220px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 250px;
+  }
+
+  @media (min-width: 1650px) {
+    font-size: 300px;
+  }
+}
+
+.error__text {
+  font-size: 8vw;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 70px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 80px;
+  }
+
+  @media (min-width: 1650px) {
+    font-size: 100px;
+  }
+}

@@ -66,7 +66,9 @@
             <div class="tab-pane fade {{ active }}" id="{{ tab.id }}" role="tabpanel">
                 <div class="row">
                     {% for obProduct in obProductList %}
-                        {% partial 'product/product-card/product-card' obProduct=obProduct %}
+                        <div class="col-lg-4 col-12">
+                            {% partial 'product/product-card/product-card' obProduct=obProduct %}
+                        </div>
                     {% endfor %}
                 </div>
             </div>

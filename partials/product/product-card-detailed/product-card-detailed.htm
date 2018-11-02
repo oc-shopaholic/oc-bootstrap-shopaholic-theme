@@ -39,15 +39,7 @@
                 </span>
                 <a href="#" class="product-detailed__category-link">{{ obProduct.category }}</a> {# TODO: add link for category #}
             </p>
-            <div class="input-group mb-3 product-detailed__btn-qty">
-                <button class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="minus" type="button">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <input type="text" class="product-detailed__btn-qty-input" placeholder="0">
-                <button class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="plus" type="button">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
+            {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue='1' btnProductPage=true %}
             <button class="btn btn-lg btn-dark" type="button">
                 <i class="fa fa-shopping-cart"></i>Add to cart
             </button>
