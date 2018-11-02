@@ -1,0 +1,110 @@
+{% set cartProduct = {
+    1: {
+        id: 'q1',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Мопс',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Охрана',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, iste?',
+        currentPrice: 666,
+        oldPrice: 777,
+        totalPrice: 8658,
+        currency: 'BYN',
+        value: 13,
+        advanced: {
+            name: 'power',
+            param: '666',
+        },
+        quantity: '23'
+    },
+    2: {
+        id: 'q2',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Кошка',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Предметы роскоши',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, iste?',
+        currentPrice: 333,
+        oldPrice: 999.99,
+        totalPrice: 999,
+        currency: 'BYN',
+        value: 3,
+        advanced: {
+            name: 'power',
+            param: '13',
+        },
+        quantity: '4'
+    },
+    3: {
+        id: 'q3',
+        imagePath: 'https://picsum.photos/200/200?random',
+        name: 'Ктулху',
+        productLink: '#',
+        categoryLink: '#',
+        category: 'Древние боги',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, iste?',
+        currentPrice: 1333,
+        oldPrice: 1999.99,
+        totalPrice: 1333,
+        currency: 'BYN',
+        value: 1,
+        advanced: {
+            name: 'power',
+            param: '10000',
+        },
+        sale: true,
+        quantity: '8'
+    }
+} %}
+
+<table class="cart table table-responsive table-hover container">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">QTY</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for elm in cartProduct %}
+        <tr>
+            <td class="align-middle">
+                <a href="{{ elm.productLink }}" class="cart__img-wrap d-block">
+                    <img class="cart__img" src="{{ elm.imagePath }}" alt="{{ elm.description }}">
+                </a>
+            </td>
+            <td class="align-middle">
+                <span class="cart__product-name font-weight-bold d-block mb-2">
+                    {{ elm.name }}
+                </span>
+                <a href="{{ elm.categoryLink }}" class="cart__product-category text-black-50">
+                    {{ elm.category }}
+                </a>
+            </td>
+            <td class="cart__price align-middle">
+                <div class="cart__price-bar d-flex flex-column">
+                    <span class="cart__current-price pr-2 font-weight-bold {{ isSale }} d-block mb-1">
+                        {{ elm.currentPrice }} {{ elm.currency }}
+                    </span>
+                    <span class="cart__old-price text-muted pr-2">
+                        <s>{{ elm.oldPrice }} {{ elm.currency }}</s>
+                    </span>
+                </div>
+            </td>
+            <td class="cart__qta align-middle">
+                {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity %}
+            </td>
+            <td class="cart__total-price align-middle">
+                {{ elm.totalPrice }} {{ elm.currency }}
+            </td>
+            <td class="cart__delete-position align-middle">
+                <button class="cart__delete-btn" aria-label="Delete" data-id="{{ elm.id }}"></button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
