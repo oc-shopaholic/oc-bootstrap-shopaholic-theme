@@ -33,7 +33,7 @@ export default new class ButtonChangeQuantity {
                     _this.addQuantuty($productQuantityInput, productQuantity);
                 }
                 if($btn.attr('data-ajax') === 'updateTotal') {
-                    _this.sendReqeustUpdateTotal($btn);
+                    _this.sendRequestUpdateTotal($btn);
                 }
             }
         });
@@ -55,10 +55,10 @@ export default new class ButtonChangeQuantity {
         }
     }
 
-    sendReqeustUpdateTotal ($btn) {
+    sendRequestUpdateTotal ($btn) {
         const _this = this;
 
-        console.log('update total');
+        console.log('update total'); /* for backend */
 
         let $totalPrice = $btn.parent().parent().next().find(_this.totalPriceSelector);
         $totalPrice.text('updated');

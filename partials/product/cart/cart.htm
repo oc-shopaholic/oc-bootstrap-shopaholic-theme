@@ -59,52 +59,62 @@
     }
 } %}
 
-<table class="cart table table-responsive table-hover container">
-    <thead>
-    <tr>
-        <th scope="col"></th>
-        <th scope="col">Product</th>
-        <th scope="col">Price</th>
-        <th scope="col">QTY</th>
-        <th scope="col">Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for elm in cartProduct %}
+<section class="cart">
+    {# if cart is NOT empty #}
+    <table class="cart__table table table-responsive table-hover container">
+        <thead>
         <tr>
-            <td class="align-middle">
-                <a href="{{ elm.productLink }}" class="cart__img-wrap d-block">
-                    <img class="cart__img" src="{{ elm.imagePath }}" alt="{{ elm.description }}">
-                </a>
-            </td>
-            <td class="align-middle">
+            <th scope="col"></th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">QTY</th>
+            <th scope="col">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for elm in cartProduct %}
+            <tr class="cart__item">
+                <td class="align-middle">
+                    <a href="{{ elm.productLink }}" class="cart__img-wrap d-block">
+                        <img class="cart__img" src="{{ elm.imagePath }}" alt="{{ elm.description }}">
+                    </a>
+                </td>
+                <td class="align-middle">
                 <span class="cart__product-name font-weight-bold d-block mb-2">
                     {{ elm.name }}
                 </span>
-                <a href="{{ elm.categoryLink }}" class="cart__product-category text-black-50">
-                    {{ elm.category }}
-                </a>
-            </td>
-            <td class="cart__price align-middle">
-                <div class="cart__price-bar d-flex flex-column">
-                    <span class="cart__current-price pr-2 font-weight-bold {{ isSale }} d-block mb-1">
-                        {{ elm.currentPrice }} {{ elm.currency }}
-                    </span>
-                    <span class="cart__old-price text-muted pr-2">
-                        <s>{{ elm.oldPrice }} {{ elm.currency }}</s>
-                    </span>
-                </div>
-            </td>
-            <td class="cart__qta align-middle">
-                {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity btnChangeQtyAjax=true %}
-            </td>
-            <td class="cart__total-price align-middle">
-                <span class="cart__total-price-figures" data-id="{{ elm.id }}">{{ elm.totalPrice }}</span> {{ elm.currency }}
-            </td>
-            <td class="cart__delete-position align-middle">
-                <button class="cart__delete-btn" aria-label="Delete" data-id="{{ elm.id }}"></button>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+                    <a href="{{ elm.categoryLink }}" class="cart__product-category text-black-50">
+                        {{ elm.category }}
+                    </a>
+                </td>
+                <td class="cart__price align-middle">
+                    <div class="cart__price-bar d-flex flex-column">
+                        <span class="cart__current-price pr-2 font-weight-bold {{ isSale }} d-block mb-1">
+                            {{ elm.currentPrice }} {{ elm.currency }}
+                        </span>
+                            <span class="cart__old-price text-muted pr-2">
+                            <s>{{ elm.oldPrice }} {{ elm.currency }}</s>
+                        </span>
+                    </div>
+                </td>
+                <td class="cart__qta align-middle">
+                    {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity btnChangeQtyAjax=true %}
+                </td>
+                <td class="cart__total-price align-middle">
+                    <span class="cart__total-price-figures" data-id="{{ elm.id }}">{{ elm.totalPrice }}</span> {{ elm.currency }}
+                </td>
+                <td class="cart__delete-position align-middle">
+                    <button class="btn btn-outline-secondary btn_bg-white cart__delete-btn" aria-label="Delete" data-id="{{ elm.id }}">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# if cart is empty remove class .d-none #}
+    <h2 class="cart__empty container mt-4 text-center d-none">Your cart is empty.</h2>
+</section>
+
+
