@@ -1,12 +1,12 @@
 <header class="header container-fluid fixed-top">
     <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand mr-5" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="row collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="col navbar-nav mr-auto">
+            <ul class="col navbar-nav mr-auto mb-3 mb-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
                 </li>
@@ -16,7 +16,7 @@
                     </li>
                 {% endfor %}
             </ul>
-            <div class="input-group col-lg-3 col-12 header__search">
+            <div class="input-group col-lg-3 col-12 order-1 order-lg-0 header__search">
                 <input class="form-control py-2 border-right-0 border" type="search" placeholder="search" id="example-search-input">
                 <span class="input-group-append">
                 <button class="btn btn-outline-secondary border-left-0 border btn_bg-white" type="button">
@@ -24,12 +24,12 @@
                 </button>
             </span>
             </div>
-            <ul class="col-12 col-lg-auto social-icon__list">
+            <ul class="col-12 col-lg-auto order-1 order-lg-0 social-icon__list">
                 <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook"></i></a></li>
                 <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram"></i></a></li>
                 <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter"></i></a></li>
             </ul>
-            <a href="#" class="col-12 col-lg-auto header__cart">
+            <a href="#" class="col-12 col-lg-auto mb-2 mb-lg-0 header__cart">
                 <i class="fa fa-shopping-cart"></i>Cart <span class="header__cart-badge">3</span>
             </a>
         </div>

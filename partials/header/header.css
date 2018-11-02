@@ -2,6 +2,20 @@
   background-color: #343a40;
 }
 
+.navbar-brand {
+  font-size: 30px;
+
+  @media (min-width: 992px) {
+    font-size: 36px;
+  }
+}
+
+.nav-item {
+  @media (max-width: 991px) {
+    text-align: center;
+  }
+}
+
 .btn_bg-white {
   background-color: #fff;
 }
@@ -70,7 +84,6 @@
 
   @media (max-width: 991px) {
     display: block;
-    margin-bottom: 20px;
     text-align: center;
   }
 }
