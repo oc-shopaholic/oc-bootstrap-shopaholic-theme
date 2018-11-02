@@ -1,9 +1,9 @@
 <div class="input-group mb-3 product-detailed__btn-qty">
-    <button class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="minus" type="button">
+    <button class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="minus" {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %} type="button">
         <i class="fa fa-minus"></i>
     </button>
     <input type="number" class="product-detailed__btn-qty-input" value="{{ btnChangeQtyValue }}">
-    <button class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="plus" type="button">
+    <button class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="plus" {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %} type="button">
         <i class="fa fa-plus"></i>
     </button>
 </div>

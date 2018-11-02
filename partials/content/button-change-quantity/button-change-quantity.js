@@ -4,6 +4,7 @@ export default new class ButtonChangeQuantity {
         this.productQuantitySelector = '.product-detailed__btn-qty';
         this.btnQuantityChangeSelector = '.product-detailed__btn-qty-change';
         this.quantitySelector = '.product-detailed__btn-qty-input';
+        this.totalPriceSelector = '.cart__total-price-figures';
 
         /* variables */
         this.checkQuantityRegExp = /^\+?(0|[1-9]\d*)$/;
@@ -31,6 +32,9 @@ export default new class ButtonChangeQuantity {
                 } else if ($btn.attr('data-qty') === 'plus') {
                     _this.addQuantuty($productQuantityInput, productQuantity);
                 }
+                if($btn.attr('data-ajax') === 'updateTotal') {
+                    _this.sendReqeustUpdateTotal($btn);
+                }
             }
         });
     }
@@ -49,6 +53,15 @@ export default new class ButtonChangeQuantity {
         if (productQuantity > 1) {
             $(productQuantityInput).val(+productQuantity - 1);
         }
+    }
+
+    sendReqeustUpdateTotal ($btn) {
+        const _this = this;
+
+        console.log('update total');
+
+        let $totalPrice = $btn.parent().parent().next().find(_this.totalPriceSelector);
+        $totalPrice.text('updated');
     }
 
 } ();

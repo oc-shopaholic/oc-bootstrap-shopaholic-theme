@@ -96,10 +96,10 @@
                 </div>
             </td>
             <td class="cart__qta align-middle">
-                {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity %}
+                {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity btnChangeQtyAjax=true %}
             </td>
             <td class="cart__total-price align-middle">
-                {{ elm.totalPrice }} {{ elm.currency }}
+                <span class="cart__total-price-figures" data-id="{{ elm.id }}">{{ elm.totalPrice }}</span> {{ elm.currency }}
             </td>
             <td class="cart__delete-position align-middle">
                 <button class="cart__delete-btn" aria-label="Delete" data-id="{{ elm.id }}"></button>
