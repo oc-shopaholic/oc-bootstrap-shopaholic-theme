@@ -1,5 +1,20 @@
 .page-link {
   line-height: 1;
+  color: #343a40;
+
+  &:hover {
+    color: #343a40;
+    opacity: .75;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .25);
+  }
+}
+
+.page-item.active .page-link {
+  background-color: #343a40;
+  border-color: #343a40;
 }
 
 .page-item.active > .page-link {

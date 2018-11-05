@@ -1,9 +1,15 @@
-.product-detailed__img {
-  width: 100%;
+.product-detailed__carousel-inner {
+  height: 0;
+  padding-bottom: 100%;
+}
 
-  @media (max-width: 991px) {
-    margin-bottom: 25px;
-  }
+.product-detailed__carousel-item {
+  position: absolute;
+}
+
+.product-detailed__carousel-item-img {
+  position: absolute;
+  object-fit: cover;
 }
 
 .product-detailed__category-link {
