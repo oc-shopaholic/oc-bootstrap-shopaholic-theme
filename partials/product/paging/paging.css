@@ -8,13 +8,13 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.25);
+    box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .25);
   }
 }
 
 .page-item.active .page-link {
-    background-color: #343a40;
-    border-color: #343a40;
+  background-color: #343a40;
+  border-color: #343a40;
 }
 
 .page-item.active > .page-link {
