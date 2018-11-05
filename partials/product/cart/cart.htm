@@ -59,30 +59,31 @@
     }
 } %}
 
-<section class="cart pt-4">
+<section class="cart table-responsive pt-4">
     {# if cart is NOT empty #}
-    <table class="cart__table table table-responsive table-hover container">
+    <table class="cart__table table table-hover">
         <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
-            <th scope="col">QTY</th>
-            <th scope="col">Amount</th>
-        </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">QTY</th>
+                <th scope="col">Amount</th>
+                <th scope="col"></th>
+            </tr>
         </thead>
         <tbody>
         {% for elm in cartProduct %}
             <tr class="cart__item">
-                <td class="align-middle">
+                <td class="cart__picture align-middle">
                     <a href="{{ elm.productLink }}" class="cart__img-wrap d-block">
                         <img class="cart__img" src="{{ elm.imagePath }}" alt="{{ elm.description }}">
                     </a>
                 </td>
                 <td class="align-middle">
-                <span class="cart__product-name font-weight-bold d-block mb-2">
-                    {{ elm.name }}
-                </span>
+                    <span class="cart__product-name font-weight-bold d-block mb-2">
+                        {{ elm.name }}
+                    </span>
                     <a href="{{ elm.categoryLink }}" class="cart__product-category text-black-50">
                         {{ elm.category }}
                     </a>
@@ -92,12 +93,12 @@
                         <span class="cart__current-price pr-2 font-weight-bold {{ isSale }} d-block mb-1">
                             {{ elm.currentPrice }} {{ elm.currency }}
                         </span>
-                            <span class="cart__old-price text-muted pr-2">
+                        <span class="cart__old-price text-muted pr-2">
                             <s>{{ elm.oldPrice }} {{ elm.currency }}</s>
                         </span>
                     </div>
                 </td>
-                <td class="cart__qta align-middle">
+                <td class="cart__qty align-middle">
                     {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity btnChangeQtyAjax=true %}
                 </td>
                 <td class="cart__total-price align-middle">
