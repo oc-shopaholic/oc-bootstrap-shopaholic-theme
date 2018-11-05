@@ -1,3 +1,7 @@
+.cart__picture {
+  min-width: 250px;
+}
+
 .cart__img-wrap {
   position: relative;
   width: 100%;
@@ -17,7 +21,7 @@
   font-size: .9rem;
 }
 
-.cart__qta {
-  width: 20px;
+.cart__qty {
+  min-width: 150px;
   height: 20px;
 }
