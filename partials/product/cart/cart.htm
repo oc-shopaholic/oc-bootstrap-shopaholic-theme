@@ -62,9 +62,8 @@
         {% endfor %}
         </tbody>
     </table>
-    {% else %}
-    <h2 class="cart__empty container mt-4 text-center">Your cart is empty.</h2>
     {% endif %}
+    <h2 class="cart__empty container mt-4 text-center {% if obCartPositionList.isNotEmpty() %}d-none{% endif %}">Your cart is empty.</h2>
 </section>
 
 
