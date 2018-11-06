@@ -3,3 +3,8 @@ description: ''
 author: Lovata
 homepage: ''
 code: 'free-ecommerce-bootstrap-shopaholic'
+form: config/fields.yaml
+require:
+    - RainLab.Pages
+    - Lovata.Shopaholic
+    - Lovata.Toolbox

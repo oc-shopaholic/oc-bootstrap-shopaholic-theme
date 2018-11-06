@@ -1,5 +1,7 @@
+{% if this.theme.index_banner is not empty %}
 <section class="container banner">
-    <a href="#" target="_blank">
-        <img class="banner__img rounded" src="{{ 'img/gold.jpg'|media }}" alt="">
+    <a {% if this.theme.index_banner_link is not empty %}href="{{ this.theme.index_banner_link }}"{% endif %} target="_blank">
+        <img class="banner__img rounded" src="{{ this.theme.index_banner|media }}">
     </a>
 </section>
+{% endif %}

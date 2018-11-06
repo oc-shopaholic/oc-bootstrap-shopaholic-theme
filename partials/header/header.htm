@@ -1,6 +1,6 @@
 <header class="header container-fluid fixed-top">
     <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" {% if this.page.id != 'index' %}href="{{ 'index'|page }}"{% endif %}>{{ site_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,11 +8,12 @@
         <div class="row collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="col navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" {% if this.page.id != 'index' %}href="{{ 'index'|page }}"{% endif %}>Home<span class="sr-only">(current)</span></a>
                 </li>
-                {% for i in 0..2 %}
+                {% set arMenuItemList = HeaderStaticMenu.menuItems() %}
+                {% for obMenuItem in arMenuItemList if obMenuItem.viewBag.isHidden == false %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link 1</a>
+                        <a class="nav-link {{ obMenuItem.viewBag.cssClass }}" {% if obMenuItem.isActive == false %}href="{{ obMenuItem.url }}"{% endif %}>{{ obMenuItem.title }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -24,14 +25,24 @@
                 </button>
             </span>
             </div>
-            <ul class="col-12 col-lg-auto social-icon__list">
-                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook"></i></a></li>
-                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram"></i></a></li>
-                <li class="social-icon__item"><a href="#" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter"></i></a></li>
-            </ul>
-            <a href="#" class="col-12 col-lg-auto header__cart">
-                <i class="fa fa-shopping-cart"></i>Cart <span class="header__cart-badge">3</span>
-            </a>
+            {% if this.theme.facebook_link is not empty or this.theme.instagram_link is not empty or this.theme.twitter_link is not empty %}
+                <ul class="col-12 col-lg-auto social-icon__list">
+                    {% if this.theme.facebook_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.facebook_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook"></i></a></li>
+                    {% endif %}
+                    {% if this.theme.instagram_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.instagram_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram"></i></a></li>
+                    {% endif %}
+                    {% if this.theme.twitter_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.twitter_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter"></i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            {% if cart_is_available %}
+                <a href="{{ 'checkout'|page }}" class="col-12 col-lg-auto header__cart">
+                    <i class="fa fa-shopping-cart"></i>Cart <span class="header__cart-badge">{{ Cart.get().count }}</span>
+                </a>
+            {% endif %}
         </div>
     </nav>
 </header>

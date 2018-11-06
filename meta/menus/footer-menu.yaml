@@ -1,0 +1,51 @@
+name: 'Footer menu'
+items:
+    -
+        title: Catalog
+        nesting: '1'
+        type: shop-catalog
+        url: ''
+        code: ''
+        reference: ''
+        cmsPage: catalog
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Contacts
+        nesting: ''
+        type: header
+        url: ''
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: Contacts
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: contacts
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'About us'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: about-us
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'

@@ -1,27 +1,35 @@
+{#
+    @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem
+    @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem
+#}
 
-{% set isSale = obProduct.sale is not empty ? 'text-danger' : '' %}
+{% set obOffer = obProduct.offer.first() %}
 <div class="mb-4">
   <div class="product-card card shadow" data-id="{{ obProduct.id }}">
-    <a class="product-card__link product-card__link_img" href="{{ obProduct.productLink }}">
-        <img class="product-card__img card-img-top" src="{{ obProduct.imagePath }}" alt="{{ obProduct.title }}">
+    <a class="product-card__link product-card__link_img" href="{{ obProduct.getPageUrl() }}">
+        <img class="product-card__img card-img-top" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
     </a>
     <div class="card-body product-card__body">
-        <a class="product-card__title-category text-black-50" href="{{ obProduct.categoryLink }}">
-            <u><h3 class="card-title product-card__category-title mb-2">{{ obProduct.category }}</h3></u>
+        <a class="product-card__title-category text-black-50" href="{{ obProduct.category.getPageUrl('catalog') }}">
+            <u><h3 class="card-title product-card__category-title mb-2">{{ obProduct.category.name }}</h3></u>
         </a>
-        <a class="product-card__link" href="{{ obProduct.productLink }}">
+        <a class="product-card__link" href="{{ obProduct.getPageUrl() }}">
             <h3 class="card-title product-card__title text-dark font-weight-bold">{{ obProduct.name }}</h3>
         </a>
         <div class="product-card__price-bar">
-            <span class="product-card__current-price pr-2 font-weight-bold {{ isSale }}">
-                {{ obProduct.currentPrice }}  {{ obProduct.currency }}
+            <span class="product-card__current-price pr-2 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }}">
+                {{ obOffer.price }}  {{ obOffer.currency }}
             </span>
+            {% if obOffer.old_price_value > 0 %}
             <span class="product-card__old-price text-muted pr-2">
-                <s>{{ obProduct.oldPrice }} {{ obProduct.currency }}</s>
+                <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
             </span>
-            <a href="#" aria-label="Add to cart" class="text-secondary">
+            {% endif %}
+            {% if cart_is_available %}
+            <button aria-label="Add to cart" class="text-secondary">
                 <i class="fa fa-cart-plus"></i>
-            </a>
+            </button>
+            {% endif %}
         </div>
     </div>
   </div>

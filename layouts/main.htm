@@ -1,9 +1,29 @@
+[staticMenu HeaderStaticMenu]
+code = "header-menu"
+
+[staticPage]
+useContent = 1
+default = 0
+
+[staticMenu FooterStaticMenu]
+code = "footer-menu"
 ==
 <?php
 function onInit()
 {
     $this['path_css'] = mix('css/common.css', 'themes/lovata-bootstrapshopaholic/assets');
     $this['path_js'] = mix('js/common.js', 'themes/lovata-bootstrapshopaholic/assets');
+    $this['cart_is_available'] = false;
+
+    /**
+     * Check if Cart component has been registered and autoload it
+     **/
+
+      $obManager = \Cms\Classes\ComponentManager::instance();
+    if ($obManager->hasComponent('Lovata\OrdersShopaholic\Components\Cart')) {
+        $this['cart_is_available'] = true;
+        $this->addComponent('Lovata\OrdersShopaholic\Components\Cart', 'Cart', []);
+    }
 }
 ?>
 ==
@@ -16,15 +36,12 @@ function onInit()
 </head>
 <body class="body">
     {% partial 'header/header' %}
-
     <div class="site-content">
         {% page %}
     </div>
-
     {% partial 'footer/footer' %}
 <script src="{{ path_js }}"></script>
     {% framework extras %}
     {% scripts %}
-
 </body>
 </html>

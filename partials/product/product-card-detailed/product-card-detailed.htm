@@ -1,43 +1,42 @@
-{% set obProduct = {
-    name: 'Lorem ipsum',
-    imgSrc: 'https://picsum.photos/200',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque autem dolor exercitationem explicabo iure laudantium molestias, necessitatibus, officia optio pariatur perspiciatis placeat, praesentium qui quod recusandae repellat sunt voluptas?',
-    brand: 'The Best',
-    category: 'TopSeller',
-    currentPrice: '99.99',
-    oldPrice: '129.00',
-    currency: 'BYN'
-} %}
+{#
+    @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem
+    @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem
+#}
 
+{% set obOffer = obProduct.offer.first() %}
 <section class="container shadow p-3 mb-5 bg-white rounded product-page-detailed pb-4">
     <div class="row">
         <div class="col-lg-6">
-            <img class="product-detailed__img" src="{{ obProduct.imgSrc }}" alt="">
+            <img class="product-detailed__img" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
         </div>
         <div class="col-lg-6">
             <h1>{{ obProduct.name }}</h1>
             <div class="product-card__price-bar mb-3">
                 <span class="product-card__current-price pr-2 font-weight-bold text-danger">
-                    {{ obProduct.currentPrice }}  {{ obProduct.currency }}
+                    {{ obOffer.price }}  {{ obOffer.currency }}
                 </span>
+                {% if obOffer.old_price_value > 0 %}
                     <span class="product-card__old-price text-muted pr-2">
-                    <s>{{ obProduct.oldPrice }} {{ obProduct.currency }}</s>
+                    <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
                 </span>
+                {% endif %}
             </div>
             <p class="product-detailed__description">
-                {{ obProduct.description }}
+                {{ obProduct.preview_text }}
             </p>
+            {% if obProduct.brand.isNotEmpty() %}
             <p class="product-detailed__brand">
                 <span class="font-weight-bold">
                     Brand:
                 </span>
-                {{ obProduct.brand }}
+                {{ obProduct.brand.name }}
             </p>
+            {% endif %}
             <p class="product-detailed__category">
                 <span class="font-weight-bold">
                     Category:
                 </span>
-                <a href="#" class="product-detailed__category-link">{{ obProduct.category }}</a> {# TODO: add link for category #}
+                <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.category.name }}</a>
             </p>
             {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue='1' btnProductPage=true %}
             <button class="btn btn-lg btn-dark" type="button">
@@ -46,4 +45,4 @@
         </div>
     </div>
 </section>
-
+<div class="container wysiwyg">{{ obProduct.description|raw }}</div>

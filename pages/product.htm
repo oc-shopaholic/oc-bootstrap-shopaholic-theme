@@ -1,0 +1,24 @@
+title = "product page"
+url = "/:category/:slug"
+layout = "main"
+is_hidden = 0
+
+[CategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 1
+==
+{% set obProduct = ProductPage.get() %}
+{% set obCategory = CategoryPage.get() %}
+
+{% set arBreadcrumbs = [
+    {'name': 'Home', 'url': 'index'|page},
+    {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')},
+    {'name': obProduct.name, 'url': obProduct.getPageUrl('product')},
+] %}
+
+{% partial 'content/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+{% partial 'product/product-card-detailed/product-card-detailed' obProduct=obProduct %}
