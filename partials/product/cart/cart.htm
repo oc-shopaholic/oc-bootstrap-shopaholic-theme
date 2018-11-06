@@ -4,24 +4,25 @@
 
 {% set obCartPositionList = Cart.get() %}
 
-<section class="cart">
+<section class="cart table-responsive pt-4">
     {% if obCartPositionList.isNotEmpty() %}
-    <table class="cart__table table table-responsive table-hover container">
+    <table class="cart__table table table-hover">
         <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
-            <th scope="col">QTY</th>
-            <th scope="col">Amount</th>
-        </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">QTY</th>
+                <th scope="col">Amount</th>
+                <th scope="col"></th>
+            </tr>
         </thead>
         <tbody>
         {% for obCartPosition in obCartPositionList %}
             {% set obOffer = obCartPosition.offer %}
             {% set obProduct = obOffer.product %}
             <tr class="cart__item">
-                <td class="align-middle">
+                <td class="cart__picture align-middle">
                     <a href="{{ obProduct.getPageUrl('product') }}" class="cart__img-wrap d-block">
                         <img class="cart__img" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
                     </a>
@@ -46,8 +47,8 @@
                         {% endif %}
                     </div>
                 </td>
-                <td class="cart__qta align-middle">
-                    {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=elm.quantity btnChangeQtyAjax=true %}
+                <td class="cart__qty align-middle">
+                    {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue=obCartPosition.quantity btnChangeQtyAjax=true %}
                 </td>
                 <td class="cart__total-price align-middle">
                     <span class="cart__total-price-figures" data-id="{{ obCartPosition.id }}">{{ obCartPosition.price }}</span> {{ obCartPosition.currency }}
