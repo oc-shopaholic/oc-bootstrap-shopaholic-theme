@@ -33,6 +33,14 @@ last-more_button_limit = 1
 last_button_name = "Last"
 last_button_limit = 3
 ==
+{% set obCategory = CategoryPage.get() %}
+
+{% set arBreadcrumbs = [
+    {'name': 'Home', 'url': 'index'|page},
+    {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
+] %}
+
 {% partial 'content/carousel/carousel' %}
 {% partial 'product/catalog-category/catalog-category' %}
+{% partial 'content/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 {% partial 'product/catalog/catalog' %}

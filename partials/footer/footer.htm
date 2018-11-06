@@ -49,7 +49,7 @@
                     <ul class="footer__list category__list">
                         {% for obChildMenuItem in obMenuItem.items if obChildMenuItem.viewBag.isHidden == false %}
                             <li class="category__item">
-                                <a {% if obChildMenuItem.isActive == false %}href="{{ obChildMenuItem.url }}"{% endif %} class="category__link {{ obChildMenuItem.viewBag.cssClass }}">
+                                <a {% if obChildMenuItem.isActive == false %}href="{{ obChildMenuItem.url }}"{% endif %} class="category__link {{ obChildMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive %}active{% endif %}">
                                     {{ obChildMenuItem.title }}
                                 </a>
                             </li>

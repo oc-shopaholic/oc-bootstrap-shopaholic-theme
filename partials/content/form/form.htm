@@ -101,51 +101,42 @@
             </div>
         </div>
         <hr>
-        <fieldset class="form-group">
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="delivery-way" id="inputCourier" value="option1" required>
-                        <label class="form-check-label" for="inputCourier">
-                            Courier Delivery
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="delivery-way" id="inputPostal" value="option2" required>
-                        <label class="form-check-label" for="inputPostal">
-                            Postal Service
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="delivery-way" id="inputPickup" value="option3" required>
-                        <label class="form-check-label" for="inputPickup">
-                            Customer Pickup
-                        </label>
-                        <div class="invalid-feedback">Please choose your way of delivery</div>
+
+        {% set obShippingTypeList = ShippingTypeList.make().sort().active() %}
+        {% if obShippingTypeList.isNotEmpty() %}
+            <fieldset class="form-group">
+                <div class="row">
+                    <div class="col-12">
+                        {% for obShippingType in obShippingTypeList %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="order[shipping_type_id]" id="inputCourier" value="{{ obShippingType.id }}" required>
+                            <label class="form-check-label" for="inputCourier">
+                                {{ obShippingType.name }}
+                            </label>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        {% endif %}
         <hr>
-        <fieldset class="form-group">
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payment-way" id="inputCard" value="option1" required>
-                        <label class="form-check-label" for="inputCard">
-                            Card
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payment-way" id="inputCash" value="option2" required>
-                        <label class="form-check-label" for="inputCash">
-                            Cash
-                        </label>
-                        <div class="invalid-feedback">Please choose your way of payment</div>
+        {% set obPaymentMethodList = PaymentMethodList.make().sort().active() %}
+        {% if obPaymentMethodList.isNotEmpty() %}
+            <fieldset class="form-group">
+                <div class="row">
+                    <div class="col-12">
+                        {% for obPaymentMethod in obPaymentMethodList %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="order[payment_method_id]" id="inputCard" value="{{ obPaymentMethod.id }}" required>
+                                <label class="form-check-label" for="inputCard">
+                                    {{ obPaymentMethod.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        {% endif %}
         <div class="form-group">
             <button type="submit" class="btn btn-dark w-100 text-uppercase">continue to checkout</button>
         </div>

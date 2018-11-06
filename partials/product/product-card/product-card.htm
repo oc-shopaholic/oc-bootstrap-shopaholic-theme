@@ -1,7 +1,5 @@
-{#
-    @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem
-    @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem
-#}
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+{# @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem #}
 
 {% set obOffer = obProduct.offer.first() %}
 <div class="mb-4">
@@ -10,7 +8,7 @@
         <img class="product-card__img card-img-top" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
     </a>
     <div class="card-body product-card__body">
-        <a class="product-card__title-category text-black-50" href="{{ obProduct.category.getPageUrl('catalog') }}">
+        <a class="product-card__title-category text-black-50" {% if this.page.id != 'catalog' or (this.page.id == 'catalog' and this.param.slug != obProduct.category.slug ) %}href="{{ obProduct.category.getPageUrl('catalog') }}"{% endif %}>
             <u><h3 class="card-title product-card__category-title mb-2">{{ obProduct.category.name }}</h3></u>
         </a>
         <a class="product-card__link" href="{{ obProduct.getPageUrl() }}">

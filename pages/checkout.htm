@@ -2,9 +2,18 @@ title = "Checkout"
 url = "/checkout"
 layout = "main"
 is_hidden = 0
+
+[PaymentMethodList]
+
+[ShippingTypeList]
 ==
+{% set arBreadcrumbs = [
+    {'name': 'Home', 'url': 'index'|page},
+    {'name': 'Checkout', 'url': 'checkout'|page}
+] %}
 
 <div class="container">
+    {% partial 'content/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
     {% partial 'product/cart/cart' %}
     {% partial 'content/form/form' %}
 </div>
