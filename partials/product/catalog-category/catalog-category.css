@@ -1,3 +1,7 @@
+.category {
+  background-color: #343a40;
+}
+
 .category__item {
 
   @media (min-width: 992px) {
@@ -10,5 +14,14 @@
         color: #fff;
       }
     }
+  }
+}
+
+.sorting__wrapper {
+  align-self: center;
+  width: 100%;
+
+  @media (min-width: 991px) {
+    width: auto;
   }
 }

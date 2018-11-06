@@ -2,14 +2,6 @@
   background-color: #343a40;
 }
 
-.navbar {
-  height: 70px;
-
-  @media (min-width: 992px) {
-    height: 80px;
-  }
-}
-
 .navbar-brand {
   font-size: 30px;
 
