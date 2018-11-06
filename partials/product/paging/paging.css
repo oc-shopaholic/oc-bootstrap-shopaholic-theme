@@ -10,6 +10,11 @@
   &:focus {
     box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .25);
   }
+
+  &:not([href]):not([tabindex]):hover,
+  &:not([href]):not([tabindex]):focus {
+    color: #fff;
+  }
 }
 
 .page-item.active .page-link {

@@ -14,4 +14,5 @@ $(() => { // Shorthand for $( document ).ready()
   require('./partials/content/button-add-to-cart/button-add-to-cart');
   require('./partials/product/cart/cart');
   require('./partials/content/form/formValidation');
+  require('./partials/product/paging/paging');
 });
