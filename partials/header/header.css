@@ -18,6 +18,14 @@
   }
 }
 
+.header .navbar-brand:not([href]) {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
 .nav-item {
   @media (max-width: 991px) {
     text-align: center;
