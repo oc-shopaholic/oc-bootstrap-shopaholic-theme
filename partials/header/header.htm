@@ -17,14 +17,15 @@
                     </li>
                 {% endfor %}
             </ul>
-            <div class="input-group col-lg-3 col-12 order-1 order-lg-0 header__search">
+            {# search is hidden for the next release version #}
+            {#<div class="input-group col-lg-3 col-12 order-1 order-lg-0 header__search">
                 <input class="form-control py-2 border-right-0 border" type="search" placeholder="search" id="example-search-input">
                 <span class="input-group-append">
-                <button class="btn btn-outline-secondary border-left-0 border btn_bg-white" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
-            </div>
+                    <button class="btn btn-outline-secondary border-left-0 border btn_bg-white" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>#}
             {% if this.theme.facebook_link is not empty or this.theme.instagram_link is not empty or this.theme.twitter_link is not empty %}
                 <ul class="col-12 col-lg-auto order-1 order-lg-0 social-icon__list">
                     {% if this.theme.facebook_link is not empty %}
