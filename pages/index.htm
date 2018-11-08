@@ -11,7 +11,12 @@ sorting = "default"
 [ProductList]
 sorting = "no"
 ==
-{% partial 'content/carousel/carousel' %}
-{% partial 'product/product-tab/product-tab' %}
-{% partial 'content/banner/banner' %}
-{% partial 'product/product-category/product-category' %}
+{% partial 'content/carousel/carousel' arImageList=this.theme.main_slider %}
+
+{% set obPromoBlockList = PromoBlockList.make().merge([this.theme.promo_block_left, this.theme.promo_block_middle, this.theme.promo_block_right]) %}
+{% partial 'promo-block/promo-block-product-tab/promo-block-product-tab' obPromoBlockList=obPromoBlockList %}
+
+{% partial 'content/banner/banner' sImagePath=this.theme.index_banner sLink=this.theme.index_banner_link %}
+
+{% set obCategoryList = CategoryList.make().merge([this.theme.category_left, this.theme.category_middle, this.theme.category_right]) %}
+{% partial 'category/category-product-column/category-product-column' obCategoryList=obCategoryList %}

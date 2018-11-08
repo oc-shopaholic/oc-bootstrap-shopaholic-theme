@@ -2,7 +2,7 @@ name: 'Header menu'
 items:
     -
         title: Catalog
-        nesting: '0'
+        nesting: '1'
         type: shop-catalog
         code: ''
         cmsPage: catalog

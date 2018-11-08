@@ -1,0 +1,36 @@
+{# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+{# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+{# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+
+{% if obMainCategory.children.isNotEmpty() %}
+<section class="category">
+    <div class="container">
+        <div class="row justify-content-lg-between">
+            <div class="col-lg-6 navbar navbar-expand-lg navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNav" aria-controls="categoryNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-light"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="categoryNav">
+                    <ul class="category__list navbar-nav">
+                        {% for obCategory in obMainCategory.children %}
+                            {% if obCategory.id != obActiveCategory.id %}
+                                <li class="category__item nav-item mr-2">
+                                    <a href="{{ obCategory.getPageUrl('catalog') }}" class="category__link nav-link">{{ obCategory.name }}</a>
+                                </li>
+                            {% else %}
+                                <li class="category__item nav-item mr-2 active category__item_active nav-link font-weight-bold">
+                                    {{ obCategory.name }}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-auto col-md-6 col-lg-auto sorting__wrapper">
+                {% partial 'product/product-sorting/product-sorting' %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

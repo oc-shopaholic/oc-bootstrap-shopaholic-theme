@@ -57,8 +57,13 @@
                 </span>
                 <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.category.name }}</a>
             </p>
-            {% partial 'content/button-change-quantity/button-change-quantity' btnChangeQtyValue='1' btnProductPage=true %}
-            {% partial 'content/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-lg' %}
+            {% if cart_is_available %}
+                <form class="mb-0">
+                    <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                    {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue='1' btnProductPage=true %}
+                    {% partial 'form/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-lg' %}
+                </form>
+            {% endif %}
         </div>
     </div>
 </section>

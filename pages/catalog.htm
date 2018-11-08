@@ -1,10 +1,14 @@
 title = "catalog"
-url = "/:slug"
+url = "/:main_category/:category?"
 layout = "main"
 is_hidden = 0
 
 [CategoryPage]
-slug = "{{ :slug }}"
+slug = "{{ :category }}"
+slug_required = 0
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :main_category }}"
 slug_required = 1
 
 [ProductList]
@@ -33,15 +37,30 @@ last-more_button_limit = 1
 last_button_name = "Last"
 last_button_limit = 3
 ==
+{# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+{# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+{# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+
 {% set obCategory = CategoryPage.get() %}
+{% set obMainCategory = MainCategoryPage.get() %}
+{% set obActiveCategory = obCategory.isNotEmpty() ? obCategory : obMainCategory %}
 
-{% set arBreadcrumbs = [
-    {'name': 'Home', 'url': 'index'|page},
-    {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
-] %}
+{% if obCategory is not empty %}
+    {% set arBreadcrumbs = [
+        {'name': 'Home', 'url': 'index'|page},
+        {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
+        {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
+    ] %}
+{% else %}
+    {% set arBreadcrumbs = [
+        {'name': 'Home', 'url': 'index'|page},
+        {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')}
+    ] %}
+{% endif %}
 
-{% partial 'content/picture-preview-top/picture-preview-top' obCategory=obCategory %}
-{% partial 'product/catalog-category/catalog-category' %}
-{% partial 'content/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
-{% partial 'content/text-preview/text-preview' obCategory=obCategory %}
-{% partial 'product/catalog/catalog' obCategory=obCategory %}
+{% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
+{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory  %}
+{% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+{% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
+{% partial 'product/catalog-product-list/catalog-product-list' %}
+{% partial 'content/wysiwyg/wysiwyg' sContent=obActiveCategory.description %}

@@ -1,0 +1,49 @@
+{#
+    @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem
+    @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem
+    @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem
+#}
+
+{% if obCategoryList.isNotEmpty() %}
+    <section class="category-product-column container">
+        <div class="row">
+            {% for obCategory in obCategoryList %}
+                {% set arProductList = ProductList.make().active().category(obCategory.id, true).random(3) %}
+                <div class="col-lg-4 col-md-12 col-12 pt-5">
+                    <hr>
+                    <h4 class="category-product-column__title text-center font-weight-bold text-black-50">{{ obCategory.name }}</h4>
+                    <hr>
+                    <ul class="category-product-column__list">
+                        {% for obProduct in arProductList %}
+                            {% set obOffer = obProduct.offer.first() %}
+                            <li class="row mt-5 py-2 mb-4 align-items-center flex-row category-product-column__list-item">
+                                <div class="col-5">
+                                    <a href="{{ obProduct.getPageUrl() }}" class="category-product-column__image-wrap">
+                                        <img src="{{ obProduct.preview_image.path }}" class="category-product-column__image img-fluid" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                                    </a>
+                                </div>
+                                <div class="category-product-column__list-item-info col-7 d-flex flex-column justify-content-between align-self-stretch">
+                                    <a href="{{ obProduct.getPageUrl() }}" class="category-product-column__title-link text-dark">
+                                        <b class="category-product-column__title">
+                                            {{ obProduct.name }}
+                                        </b>
+                                    </a>
+                                    <div class="category-product-column__price-bar d-flex flex-column mt-auto">
+                                        <span class="category-product-column__current-price pr-1 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }}">
+                                            {{ obOffer.price }} {{ obOffer.currency }}
+                                        </span>
+                                        {% if obOffer.old_price_value > 0 %}
+                                        <span class="category-product-column__old-price text-muted pr-1">
+                                            <s>{{ obOffer.old_price_value }} {{ obOffer.currency }}</s>
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
