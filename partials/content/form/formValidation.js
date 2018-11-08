@@ -21,6 +21,12 @@ export default new class FormValidation {
                    event.stopPropagation();
                }
                $(elem).addClass(_this.wasValidatedClass);
+               if (elem.checkValidity() === true) {
+                   /* TODO: lines below are for backend, please, delete them when backend side is ready  */
+                   event.preventDefault();
+                   event.stopPropagation();
+                   console.log('send request');
+               }
            });
         });
     }

@@ -10,9 +10,26 @@
   }
 }
 
+.header .navbar-brand:not([href]) {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
 .nav-item {
   @media (max-width: 991px) {
     text-align: center;
+  }
+}
+
+.dropdown-item {
+  &:hover {
+    background-color: #e9ecef;
+  }
+  &:active {
+    background-color: #343a40;
   }
 }
 

@@ -1,0 +1,6 @@
+.picture-top {
+  height: 350px;
+}
+.picture-top__img {
+  object-fit: cover;
+}

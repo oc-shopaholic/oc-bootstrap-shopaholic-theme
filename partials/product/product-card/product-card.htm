@@ -14,7 +14,7 @@
         <a class="product-card__link" href="{{ obProduct.getPageUrl() }}">
             <h3 class="card-title product-card__title text-dark font-weight-bold">{{ obProduct.name }}</h3>
         </a>
-        <div class="product-card__price-bar">
+        <div class="product-card__price-bar d-flex align-items-center">
             <span class="product-card__current-price pr-2 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }}">
                 {{ obOffer.price }}  {{ obOffer.currency }}
             </span>
@@ -24,9 +24,7 @@
             </span>
             {% endif %}
             {% if cart_is_available %}
-            <button aria-label="Add to cart" class="text-secondary">
-                <i class="fa fa-cart-plus"></i>
-            </button>
+                {% partial 'content/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-sm' %}
             {% endif %}
         </div>
     </div>

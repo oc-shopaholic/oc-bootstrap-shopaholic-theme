@@ -1,5 +1,6 @@
 <section class="catalog container mt-4">
     <div class="row _ajax_catalog_wrapper">
         {% partial 'product/catalog/ajax-catalog' %}
+        <div class="container wysiwyg">{{ obCategory.description|raw }}</div>
     </div>
 </section>

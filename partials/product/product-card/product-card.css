@@ -12,6 +12,15 @@
     transition-duration: .2s;
     transition-property: opacity;
   }
+
+  @media (min-width: 577px) {
+    height: 83px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    height: 56px;
+  }
 }
 
 .product-card__link {

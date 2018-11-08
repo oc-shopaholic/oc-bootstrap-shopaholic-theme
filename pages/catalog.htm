@@ -40,7 +40,8 @@ last_button_limit = 3
     {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
 ] %}
 
-{% partial 'content/carousel/carousel' %}
+{% partial 'content/picture-preview-top/picture-preview-top' obCategory=obCategory %}
 {% partial 'product/catalog-category/catalog-category' %}
 {% partial 'content/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
-{% partial 'product/catalog/catalog' %}
+{% partial 'content/text-preview/text-preview' obCategory=obCategory %}
+{% partial 'product/catalog/catalog' obCategory=obCategory %}
