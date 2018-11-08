@@ -26,3 +26,13 @@
   min-width: 150px;
   height: 20px;
 }
+
+.cart__total-position-old-price,
+.cart__total-shipping-old-price,
+.cart__total-price-old-price {
+  text-decoration: line-through;
+}
+
+.cart__total-price {
+  font-size: 1.5rem;
+}

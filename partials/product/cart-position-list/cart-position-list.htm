@@ -62,6 +62,41 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="cart__total container">
+        <div class="cart__total-position row mb-3">
+            <span class="cart__total-position-title col-6 font-weight-bold">Position price:</span>
+            <span class="cart__total-position-current-price col-3 text-right">
+                <span class="cart__total-position-current-price-figures">345</span>
+                <span class="cart__total-position-current-price-currency">$</span>
+            </span>
+            <span class="cart__total-position-old-price col-3 text-right text-muted">
+                <span class="cart__total-position-olg-price-figures">390</span>
+                <span class="cart__total-position-old-price-currency">$</span>
+            </span>
+        </div>
+        <div class="cart__total-shipping row mb-3">
+            <span class="cart__total-shipping-title col-6 font-weight-bold">Shipping price:</span>
+            <span class="cart__total-shipping-current-price col-3 text-right">
+                <span class="cart__total-shipping-current-price-figures">58</span>
+                <span class="cart__total-shipping-current-price-currency">$</span>
+            </span>
+            <span class="cart__total-shipping-old-price col-3 text-right text-muted">
+                <span class="cart__total-shipping-olg-price-figures">87</span>
+                <span class="cart__total-shipping-old-price-currency">$</span>
+            </span>
+        </div>
+        <div class="cart__total-price row mb-3">
+            <span class="cart__total-price-title col-6 font-weight-bold">Total price:</span>
+            <span class="cart__total-price-current-price col-3 text-right">
+                <span class="cart__total-price-current-price-figures">600</span>
+                <span class="cart__total-price-current-price-currency">$</span>
+            </span>
+            <span class="cart__total-price-old-price col-3 text-right text-muted">
+                <span class="cart__total-price-olg-price-figures">800</span>
+                <span class="cart__total-price-old-price-currency">$</span>
+            </span>
+        </div>
+    </div>
     {% endif %}
     <h2 class="cart__empty container mt-4 text-center {% if obCartPositionList.isNotEmpty() %}d-none{% endif %}">Your cart is empty.</h2>
 </section>
