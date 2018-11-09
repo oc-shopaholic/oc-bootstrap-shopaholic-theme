@@ -1,0 +1,70 @@
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+{# @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem #}
+
+{% set obOffer = obProduct.offer.first() %}
+<section class="container shadow p-3 mb-5 bg-white rounded product-page-detailed pb-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="carouselExampleIndicators" class="carousel product-detailed__carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for i in obProduct.images.count() %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" class="{% if loop.first %} active {% endif %}"></li>
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner mb-3 mb-lg-0 product-detailed__carousel-inner">
+                    {% for obImage in obProduct.images %}
+                        <div class="carousel-item product-detailed__carousel-item {% if loop.first %} active {% endif %} h-100">
+                            <img class="d-block w-100 h-100 product-detailed__carousel-item-img" src="{{ obImage.path }}" alt="{{ obImage.description }}" title="{{ obImage.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h1>{{ obProduct.name }}</h1>
+            <div class="product-card__price-bar mb-3">
+                <span class="product-card__current-price pr-2 font-weight-bold text-danger">
+                    {{ obOffer.price }}  {{ obOffer.currency }}
+                </span>
+                {% if obOffer.old_price_value > 0 %}
+                    <span class="product-card__old-price text-muted pr-2">
+                    <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
+                </span>
+                {% endif %}
+            </div>
+            <p class="product-detailed__description">
+                {{ obProduct.preview_text }}
+            </p>
+            {% if obProduct.brand.isNotEmpty() %}
+            <p class="product-detailed__brand">
+                <span class="font-weight-bold">
+                    Brand:
+                </span>
+                {{ obProduct.brand.name }}
+            </p>
+            {% endif %}
+            <p class="product-detailed__category">
+                <span class="font-weight-bold">
+                    Category:
+                </span>
+                <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.category.name }}</a>
+            </p>
+            {% if cart_is_available %}
+                <form class="mb-0">
+                    <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                    {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue=1 btnProductPage=true btnMaxQtyValue=obOffer.quantity %}
+                    {% partial 'form/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-lg' %}
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<div class="container wysiwyg">{{ obProduct.description|raw }}</div>

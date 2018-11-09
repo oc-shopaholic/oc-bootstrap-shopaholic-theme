@@ -10,14 +10,20 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
-    "jquery": "^3.2",
     "laravel-mix": "^2.0",
-    "postcss-css-variables": "^0.8.0",
-    "postcss-loader": "^2.0.10",
-    "postcss-nested": "^3.0.0",
-    "postcss-smart-import": "^0.7.6",
-    "postcss-url": "^7.3.0"
+    "laravel-mix-stylelint": "^0.2.0",
+    "stylelint": "^9.7.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^1.0.0",
+    "stylelint-webpack-plugin": "^0.10.5"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "stylelint-scss": "^3.3.2"
   }
 }

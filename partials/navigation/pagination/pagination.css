@@ -1,0 +1,27 @@
+.page-link {
+  line-height: 1;
+  color: #343a40;
+
+  &:hover {
+    color: #343a40;
+    opacity: .75;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 .2rem rgba(52, 58, 64, .25);
+  }
+
+  &:not([href]):not([tabindex]):hover,
+  &:not([href]):not([tabindex]):focus {
+    color: #fff;
+  }
+}
+
+.page-item.active .page-link {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.page-item.active > .page-link {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+}

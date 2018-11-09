@@ -1,0 +1,26 @@
+.product-detailed__carousel-inner {
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.product-detailed__carousel-item {
+  position: absolute;
+}
+
+.product-detailed__carousel-item-img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.product-detailed__category-link {
+  color: #343a40;
+  transition-timing-function: ease-in;
+  transition-duration: .2s;
+  transition-property: opacity;
+
+  &:hover {
+    color: #343a40;
+    text-decoration: none;
+    opacity: .75;
+  }
+}

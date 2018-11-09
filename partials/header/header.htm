@@ -1,0 +1,66 @@
+<header class="header container-fluid fixed-top">
+    <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mr-5" {% if this.page.id != 'index' %}href="{{ 'index'|page }}"{% endif %}>{{ this.theme.site_name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="row collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="col navbar-nav mr-auto mb-3 mb-lg-0">
+                {% set arMenuItemList = HeaderStaticMenu.menuItems() %}
+                {% for obMenuItem in arMenuItemList if obMenuItem.viewBag.isHidden == false %}
+                    {% if obMenuItem.items is not empty %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ obMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive or obMenuItem.isChildActive %}active{% endif %}" href="{{ obMenuItem.url }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ obMenuItem.title }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for obChildMenuItem in obMenuItem.items %}
+                                    {% if obChildMenu.viewBag.isHidden == false %}
+                                        <a class="dropdown-item {{ obChildMenuItem.viewBag.cssClass }} {% if obChildMenuItem.isActive %}active{% endif %}" href="{{ obChildMenuItem.url }}">
+                                            {{ obChildMenuItem.title }}
+                                        </a>
+                                        {% if loop.last == false %}
+                                            <div class="dropdown-divider"></div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ obMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive %}active{% endif %}" {% if obMenuItem.isActive == false %}href="{{ obMenuItem.url }}"{% endif %}>{{ obMenuItem.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {# search is hidden for the next release version #}
+            {#<div class="input-group col-lg-3 col-12 order-1 order-lg-0 header__search">
+                <input class="form-control py-2 border-right-0 border" type="search" placeholder="search" id="example-search-input">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary border-left-0 border btn_bg-white" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>#}
+            {% if this.theme.facebook_link is not empty or this.theme.instagram_link is not empty or this.theme.twitter_link is not empty %}
+                <ul class="col-12 col-lg-auto order-1 order-lg-0 social-icon__list">
+                    {% if this.theme.facebook_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.facebook_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook"></i></a></li>
+                    {% endif %}
+                    {% if this.theme.instagram_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.instagram_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram"></i></a></li>
+                    {% endif %}
+                    {% if this.theme.twitter_link is not empty %}
+                        <li class="social-icon__item"><a href="{{ this.theme.twitter_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter"></i></a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            <div class="_ajax_cart_link_header_wrapper">
+                {% partial 'product/cart-link-header/cart-link-header' %}
+            </div>
+        </div>
+    </nav>
+</header>
+
+

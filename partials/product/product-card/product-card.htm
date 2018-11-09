@@ -1,0 +1,40 @@
+{# @var obProduct \Lovata\Shopaholic\Classes\Item\ProductItem #}
+{# @var obOffer \Lovata\Shopaholic\Classes\Item\OfferItem #}
+
+{% set obOffer = obProduct.offer.first() %}
+<div class="mb-4">
+  <div class="product-card card shadow" data-id="{{ obProduct.id }}">
+    <a class="product-card__link product-card__link_img" href="{{ obProduct.getPageUrl() }}">
+        <img class="product-card__img card-img-top" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+    </a>
+    <div class="card-body product-card__body">
+        {% if obActiveCategory.id != obProduct.category.id %}
+        <a class="product-card__title-category text-black-50" href="{{ obProduct.category.getPageUrl('catalog') }}">
+            <u><h3 class="card-title product-card__category-title mb-2">{{ obProduct.category.name }}</h3></u>
+        </a>
+        {% endif %}
+        <a class="product-card__link" href="{{ obProduct.getPageUrl() }}">
+            <h3 class="card-title product-card__title text-dark font-weight-bold">{{ obProduct.name }}</h3>
+        </a>
+        <div class="product-card__price-bar d-flex align-items-center">
+            <span class="product-card__current-price pr-2 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }}">
+                {{ obOffer.price }}  {{ obOffer.currency }}
+            </span>
+            {% if obOffer.old_price_value > 0 %}
+            <span class="product-card__old-price text-muted pr-2">
+                <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
+            </span>
+            {% endif %}
+            {% if cart_is_available %}
+            <form class="mb-0">
+                <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                <input type="hidden" name="quantity" value="1">
+                {% partial 'form/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-sm' %}
+            </form>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+
+

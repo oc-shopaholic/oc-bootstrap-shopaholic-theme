@@ -1,0 +1,44 @@
+{% if location_is_available %}
+    {% set countryId = form_value('country') %}
+    {% set stateId = form_value('state') %}
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="inputCountry">Country</label>
+            {{ form_select_country('country_id', countryId, {
+                id: 'inputCountry',
+                class: 'form-control',
+                name: 'country',
+                emptyOption: '',
+                required: 'required',
+                'data-request': 'onInit',
+                'data-request-update': {
+                    'form/locataion-select/locataion-select': '._ajax_location_select_wrapper'
+                }
+            }) }}
+            <div class="invalid-feedback">
+                Please provide a valid country
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="inputCity">State</label>
+            {{ form_select_state('state_id', countryId, stateId, {
+                id: 'inputState',
+                class: 'form-control',
+                name: 'state',
+                required: 'required',
+                emptyOption: ''
+            }) }}
+            <div class="invalid-feedback">
+                Please provide a valid city
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip" required>
+            <div class="invalid-feedback">
+                Please provide a valid zip
+            </div>
+        </div>
+    </div>
+{% endif %}

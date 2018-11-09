@@ -1,0 +1,7 @@
+{% if sImagePath is not empty %}
+<section class="container banner">
+    <a {% if sLink is not empty %}href="{{ sLink }}"{% endif %} target="_blank">
+        <img class="banner__img rounded" src="{{ sImagePath|media }}">
+    </a>
+</section>
+{% endif %}

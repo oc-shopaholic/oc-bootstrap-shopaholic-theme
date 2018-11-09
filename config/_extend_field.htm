@@ -1,0 +1,25 @@
+<?php
+
+/** @var \Cms\Models\ThemeData $formModel */
+
+//Add promo block fields (index page)
+$formModel->addDynamicMethod('getPromoBlockLeftOptions', function () {
+    return \Lovata\Shopaholic\Models\PromoBlock::lists('name', 'id');
+});
+$formModel->addDynamicMethod('getPromoBlockMiddleOptions', function () {
+    return \Lovata\Shopaholic\Models\PromoBlock::lists('name', 'id');
+});
+$formModel->addDynamicMethod('getPromoBlockRightOptions', function () {
+    return \Lovata\Shopaholic\Models\PromoBlock::lists('name', 'id');
+});
+
+//Add сфеупщкн fields (index page)
+$formModel->addDynamicMethod('getCategoryLeftOptions', function () {
+    return \Lovata\Shopaholic\Models\Category::lists('name', 'id');
+});
+$formModel->addDynamicMethod('getCategoryMiddleOptions', function () {
+    return \Lovata\Shopaholic\Models\Category::lists('name', 'id');
+});
+$formModel->addDynamicMethod('getCategoryRightOptions', function () {
+    return \Lovata\Shopaholic\Models\Category::lists('name', 'id');
+});

@@ -1,0 +1,29 @@
+{# @var obPromoBlockList \Lovata\Shopaholic\Classes\Collection\PromoBlockCollection #}
+{# @var obPromoBlock \Lovata\Shopaholic\Classes\Item\PromoBlockItem #}
+
+{% if obPromoBlockList.isNotEmpty() %}
+<section class="promo-block-product-tab container mt-4">
+    <ul class="promo-block-product-tab__wrap nav nav-pills bg-secondary mb-3 nav-justified lighten-3 mx-0 shadow" id="product-tab" role="tablist">
+        {% for obPromoBlock in obPromoBlockList %}
+            {% set active = loop.first ? 'active' : '' %}
+            <li class="nav-item">
+                <a class="nav-link {{ active }} text-white" data-toggle="pill" href="#promo-block-{{ obPromoBlock.id }}" role="tab">{{ obPromoBlock.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="tab-content promo-block-product-tab__content">
+        {% for obPromoBlock in obPromoBlockList %}
+            {% set active = loop.first ? 'show active' : '' %}
+            <div class="tab-pane fade {{ active }}" id="promo-block-{{ obPromoBlock.id }}" role="tabpanel">
+                <div class="row">
+                    {% for obProduct in obPromoBlock.product.active().random(3) %}
+                        <div class="col-lg-4 col-12">
+                            {% partial 'product/product-card/product-card' obProduct=obProduct %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

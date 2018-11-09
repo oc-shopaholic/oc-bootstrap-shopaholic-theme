@@ -1,0 +1,27 @@
+.category {
+  background-color: #343a40;
+}
+
+.category__item {
+
+  @media (min-width: 992px) {
+    &_active,
+    &:hover:not(&_active) {
+      background-color: rgba(255, 255, 255, .2);
+      border-radius: 4px;
+
+      & > .category__link {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.sorting__wrapper {
+  align-self: center;
+  width: 100%;
+
+  @media (min-width: 991px) {
+    width: auto;
+  }
+}

@@ -1,0 +1,23 @@
+==
+<?php
+function onInit()
+{
+    $this['path_css'] = mix('css/common.css', 'themes/lovata-bootstrapshopaholic/assets');
+    $this['path_js'] = mix('js/common.js', 'themes/lovata-bootstrapshopaholic/assets');
+}
+?>
+==
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ path_css }}">
+    {% styles %}
+</head>
+<body class="body">
+    {% page %}
+<script src="{{ path_js }}"></script>
+{% framework extras %}
+{% scripts %}
+</body>
+</html>

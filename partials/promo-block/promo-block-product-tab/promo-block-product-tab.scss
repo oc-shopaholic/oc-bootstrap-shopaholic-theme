@@ -1,0 +1,15 @@
+.promo-block-product-tab__wrap {
+    border-radius: 4px;
+
+  &.nav {
+    padding: .7rem;
+  }
+
+  & .nav-link.active {
+    background-color: $dark;
+  }
+}
+
+.promo-block-product-tab__content {
+  padding: .7rem;
+}

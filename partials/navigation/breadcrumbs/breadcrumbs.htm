@@ -1,0 +1,13 @@
+<section class="container-fliud breadcrumb-list">
+    <nav class="container" aria-label="breadcrumb">
+        <ol class="breadcrumb pl-0 pr-0">
+            {% for item in arBreadcrumbs %}
+                {% if loop.last %}
+                    <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+                {% else %}
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ item.url }}">{{ item.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </nav>
+</section>

@@ -1,0 +1,76 @@
+<footer class="footer">
+    {% if this.theme.facebook_link is not empty or this.theme.instagram_link is not empty or this.theme.twitter_link is not empty %}
+    <div class="container-fluid footer__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    Get connected with us on social networks!
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-icon__list social-icon__list_align-right social-icon__list_dark">
+                        {% if this.theme.facebook_link is not empty %}
+                            <li class="social-icon__item">
+                                <a href="{{ this.theme.facebook_link }}" class="social-icon__link social-icon__link_dark" role="button">
+                                    <i class="fa fa-lg fa-facebook"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if this.theme.instagram_link is not empty %}
+                            <li class="social-icon__item">
+                                <a href="{{ this.theme.instagram_link }}" class="social-icon__link social-icon__link_dark" role="button">
+                                    <i class="fa fa-lg fa-instagram"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if this.theme.twitter_link is not empty %}
+                            <li class="social-icon__item">
+                                <a href="{{ this.theme.twitter_link }}" class="social-icon__link social-icon__link_dark" role="button">
+                                    <i class="fa fa-lg fa-twitter"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="container-fluid footer__center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>{{ this.theme.company_name }}</h4>
+                    <p>{{ this.theme.company_description }}</p>
+                </div>
+                {% set arMenuItemList = FooterStaticMenu.menuItems() %}
+                {% for obMenuItem in arMenuItemList if obMenuItem.viewBag.isHidden == false %}
+                <div class="col-lg-2">
+                    <h4 class="{{ obMenuItem.viewBag.cssClass }}">{{ obMenuItem.title }}</h4>
+                    <ul class="footer__list category__list">
+                        {% for obChildMenuItem in obMenuItem.items if obChildMenuItem.viewBag.isHidden == false %}
+                            <li class="category__item">
+                                <a {% if obChildMenuItem.isActive == false %}href="{{ obChildMenuItem.url }}"{% endif %} class="category__link {{ obChildMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive %}active{% endif %}">
+                                    {{ obChildMenuItem.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+                <div class="col-lg-4">
+                    <h4>Contacts</h4>
+                    <ul class="footer__list">
+                        <li>Phone: <a href="tel:{{ this.theme.contact_phone|replace({'-': '', '(': '', ')': '', ' ': ''}) }}" class="footer__link">{{ this.theme.contact_phone }}</a></li>
+                        <li>E-mail: <a href="mailto:{{ this.theme.contact_email }}" class="footer__highlighted footer__link">{{ this.theme.contact_email }}</a></li>
+                        <li>Address: <span class="footer__highlighted">{{ this.theme.contact_address }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid footer__bottom">
+        <div class="container footer__bottom-text">
+            &copy; {{ this.theme.copyright }}
+        </div>
+    </div>
+</footer>

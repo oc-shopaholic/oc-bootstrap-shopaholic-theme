@@ -1,0 +1,46 @@
+{#  For disabling prev, next or other buttons you should use class 'disabled',
+    for active page - 'active' class and render node '<span class="sr-only">(current)</span>' (a11y requirement)
+#}
+
+{% set iPage = Pagination.getPageFromRequest() %}
+{% set arPaginationList = Pagination.get(iPage, iCount) %}
+{% if arPaginationList is not empty %}
+<nav class="mb-4" aria-label="{{ pagingLabel }}">
+    <ul class="pagination pagination-circle justify-content-center container">
+        {% for arPaginationItem in arPaginationList %}
+            {% if arPaginationItem.code == 'first' %}
+                <li class="page-item mr-2">
+                    <a class="page-link rounded-circle border-0 py-2 d-none d-md-block {{ arPaginationItem.class }}" href="{{ url_current() ~ '?page=' ~ arPaginationItem.value }}" data-page="{{ arPaginationItem.value }}">{{ arPaginationItem.name }}</a>
+                </li>
+            {% elseif arPaginationItem.code == 'prev' %}
+                <li class="page-item mr-2">
+                    <a class="page-link rounded-circle border-0 py-2 {{ arPaginationItem.class }}" href="{{ url_current() ~ '?page=' ~ arPaginationItem.value }}" aria-label="Previous" data-page="{{ arPaginationItem.value }}">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">{{ arPaginationItem.name }}</span>
+                    </a>
+                </li>
+            {% elseif arPaginationItem.code == 'next' %}
+                <li class="page-item mr-2">
+                    <a class="page-link rounded-circle border-0 py-2 {{ arPaginationItem.class }}" href="{{ url_current() ~ '?page=' ~ arPaginationItem.value }}" aria-label="Next" data-page="{{ arPaginationItem.value }}">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">{{ arPaginationItem.name }}</span>
+                    </a>
+                </li>
+            {% elseif arPaginationItem.code == 'last' %}
+                <li class="page-item mr-2">
+                    <a class="page-link border-0 rounded-circle py-2 d-none d-md-block {{ arPaginationItem.class }}" href="{{ url_current() ~ '?page=' ~ arPaginationItem.value }}" data-page="{{ arPaginationItem.value }}">{{ arPaginationItem.name }}</a>
+                </li>
+            {% else %}
+                <li class="page-item mr-2 {% if arPaginationItem.code == 'act' %}active{% endif %}">
+                    <a class="page-link rounded-circle py-2 {{ arPaginationItem.class }}" {% if arPaginationItem.code != 'act' %}href="{{ url_current() ~ '?page=' ~ arPaginationItem.value }}"{% endif %} data-page="{{ arPaginationItem.value }}">
+                        {{ arPaginationItem.value }}
+                    </a>
+                    {% if arPaginationItem.code == 'act' %}
+                        <span class="sr-only">(current)</span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}

@@ -1,0 +1,13 @@
+<section class="container h-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="row w-100 mb-5">
+        <div class="col-md-6 d-flex justify-content-center justify-content-md-end">
+            <span class="error__figures">{{ errorFigures }}</span>
+        </div>
+        <div class="{% if errorType == '404' %} col-md-6 {% else %} col-md-4 {% endif %} d-flex justify-content-center">
+            <span class="align-self-center error__text">{{ errorText }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-dark btn-lg" href="{{ 'index'|page }}" role="button">back to the main page</a>
+    </div>
+</section>

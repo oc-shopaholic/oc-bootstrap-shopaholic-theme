@@ -1,0 +1,137 @@
+tabs:
+  fields:
+    # Header settings
+    site_name:
+      tab: Header
+      span: left
+      label: Site name
+      type: text
+    # Footer settings
+    company_name:
+      tab: Footer
+      span: left
+      label: Company name
+    company_description:
+      tab: Footer
+      span: left
+      label: Company description
+      type: textarea
+      size: small
+    contact_phone:
+      tab: Footer
+      span: left
+      label: Contact phone
+      type: text
+    contact_address:
+      tab: Footer
+      span: left
+      label: Contact address
+      type: text
+    contact_email:
+      tab: Footer
+      span: left
+      label: Contact email
+      type: text
+    copyright:
+      tab: Footer
+      span: left
+      label: Copyright
+      type: text
+    # Social links
+    facebook_link:
+      tab: Social
+      span: left
+      label: Facebook link
+      type: text
+    instagram_link:
+      tab: Social
+      span: left
+      label: Instagram link
+      type: text
+    twitter_link:
+      tab: Social
+      span: left
+      label: Twitter link
+      type: text
+    # Index page
+    main_slider:
+      tab: Main slider
+      span: full
+      label: Main slider
+      type: repeater
+      form:
+        fields:
+          title:
+            span: left
+            label: lovata.toolbox::lang.field.title
+            type: text
+          image:
+            span: right
+            label: lovata.toolbox::lang.field.image
+            type: mediafinder
+            mode: image
+          link:
+            span: left
+            label: lovata.toolbox::lang.field.link
+            type: text
+          link_name:
+            span: left
+            label: Link name
+            type: text
+          description:
+            span: full
+            label: lovata.toolbox::lang.field.description
+            type: textarea
+            size: small
+    extend_field:
+      tab: Index page
+      span: left
+      type: partial
+      path: ~/themes/lovata-bootstrapshopaholic/config/_extend_field.htm
+    promo_block_left:
+      tab: Index page
+      span: left
+      label: Left promo block
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'
+    promo_block_middle:
+      tab: Index page
+      span: left
+      label: Middle promo block
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'
+    promo_block_right:
+      tab: Index page
+      span: left
+      label: Right promo block
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'
+    index_banner:
+      span: left
+      tab: Index page
+      label: Banner image
+      type: mediafinder
+      mode: image
+    index_banner_link:
+      span: left
+      tab: Index page
+      label: Banner image link
+      type: text
+    category_left:
+      tab: Index page
+      span: left
+      label: Left category
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'
+    category_middle:
+      tab: Index page
+      span: left
+      label: Middle category
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'
+    category_right:
+      tab: Index page
+      span: left
+      label: Right category
+      type: dropdown
+      emptyOption: 'lovata.toolbox::lang.field.empty'

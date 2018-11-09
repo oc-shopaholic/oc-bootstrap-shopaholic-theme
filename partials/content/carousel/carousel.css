@@ -1,0 +1,18 @@
+.carousel-item {
+  height: 350px;
+}
+
+.carousel-caption {
+  top: 50%;
+  bottom: unset;
+  transform: translate(0, -50%);
+}
+
+.carousel-item__img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-item__title {
+  font-size: 2rem;
+}
