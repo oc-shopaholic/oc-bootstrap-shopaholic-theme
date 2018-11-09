@@ -7,7 +7,7 @@ pdf/
 _backup/
 cgi-bin/
 
-content*
+content/*
 assets/css
 assets/js
 assets/mix-manifest.json
