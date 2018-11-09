@@ -19,24 +19,34 @@ export default new class ButtonChangeQuantity {
 
         const _this = this;
 
-        $(document).on('click', this.btnQuantityChangeSelector, function(e) {
-            const $btn = $(e.currentTarget);
-            const $productQuantityInput = $btn.parent().find(_this.quantitySelector);
-            let productQuantity = $productQuantityInput.val();
+        $(document)
+            .on('click', this.btnQuantityChangeSelector, function(e) {
+                const $btn = $(e.currentTarget);
+                const $productQuantityInput = $btn.parent().find(_this.quantitySelector);
+                let productQuantity = $productQuantityInput.val();
 
-            const isQuantityValid = _this.checkQuantityValidity(productQuantity);
+                const isQuantityValid = _this.checkQuantityValidity(productQuantity);
 
-            if (isQuantityValid) {
-                if($btn.attr('data-qty') === 'minus') {
-                    _this.reduceQuantity($productQuantityInput, productQuantity);
-                } else if ($btn.attr('data-qty') === 'plus') {
-                    _this.addQuantity($productQuantityInput, productQuantity);
+                if (isQuantityValid) {
+                    if($btn.attr('data-qty') === 'minus') {
+                        _this.reduceQuantity($productQuantityInput, productQuantity);
+                    } else if ($btn.attr('data-qty') === 'plus') {
+                        _this.addQuantity($productQuantityInput, productQuantity);
+                    }
+                    if($btn.attr('data-ajax') === 'updateTotal') {
+                        _this.sendRequestUpdateTotal($btn);
+                    }
                 }
-                if($btn.attr('data-ajax') === 'updateTotal') {
-                    _this.sendRequestUpdateTotal($btn);
+            })
+            .on('change', this.quantitySelector, function (e) {
+                const $input = $(e.currentTarget);
+
+                if($input.attr('data-ajax') === 'updateTotal') {
+                    _this.sendRequestUpdateTotal($input);
                 }
-            }
-        });
+            });
+
+
     }
 
     checkQuantityValidity (quantity) {
@@ -55,12 +65,12 @@ export default new class ButtonChangeQuantity {
         }
     }
 
-    sendRequestUpdateTotal ($btn) {
+    sendRequestUpdateTotal ($elem) {
         const _this = this;
 
         console.log('update total'); /* for backend */
 
-        let $totalPrice = $btn.parent().parent().next().find(_this.totalPriceSelector);
+        let $totalPrice = $elem.parent().parent().next().find(_this.totalPriceSelector);
         $totalPrice.text('updated');
     }
 

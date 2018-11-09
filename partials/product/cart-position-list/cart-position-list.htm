@@ -4,65 +4,69 @@
 
 {% set obCartPositionList = Cart.get() %}
 
-<section class="cart table-responsive pt-4">
+<section class="cart">
     {% if obCartPositionList.isNotEmpty() %}
-    <table class="cart__table table table-hover">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">QTY</th>
-                <th scope="col">Amount</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for obCartPosition in obCartPositionList %}
-            {% set obOffer = obCartPosition.offer %}
-            {% set obProduct = obOffer.product %}
-            <tr class="cart__item" data-position-id="{{ obCartPosition.id }}" data-offer-id="{{ obOffer.id }}">
-                <td class="cart__picture align-middle">
-                    <a href="{{ obProduct.getPageUrl('product') }}" class="cart__img-wrap d-block">
-                        <img class="cart__img" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
-                    </a>
-                </td>
-                <td class="align-middle">
-                    <a class="cart__product-name font-weight-bold d-block mb-2" href="{{ obProduct.getPageUrl() }}">
-                        {{ obProduct.name }}
-                    </a>
-                    <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="cart__category-product-column text-black-50">
-                        {{ obProduct.category.name }}
-                    </a>
-                </td>
-                <td class="cart__price align-middle">
-                    <div class="cart__price-bar d-flex flex-column">
-                        <span class="cart__current-price pr-2 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }} d-block mb-1">
-                            {{ obOffer.price }}  {{ obOffer.currency }}
-                        </span>
-                        {% if obOffer.old_price_value > 0 %}
-                        <span class="cart__old-price text-muted pr-2">
-                            <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
-                        </span>
-                        {% endif %}
-                    </div>
-                </td>
-                <td class="cart__qty align-middle">
-                    {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue=obCartPosition.quantity btnChangeQtyAjax=true %}
-                </td>
-                <td class="cart__total-price align-middle">
-                    <span class="cart__total-price-figures" data-id="{{ obCartPosition.id }}">{{ obCartPosition.price }}</span> {{ obCartPosition.currency }}
-                </td>
-                <td class="cart__delete-position align-middle">
-                    <button class="btn btn-outline-secondary btn_bg-white cart__delete-btn" aria-label="Delete" data-id="{{ obOffer.id }}">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="cart__total container">
+        <h2 class="cart__table-title mt-4 mb-4 text-center">Your cart</h2>
+        <div class="cart__table-wrapper table-responsive mb-4">
+            <table class="cart__table table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for obCartPosition in obCartPositionList %}
+                    {% set obOffer = obCartPosition.offer %}
+                    {% set obProduct = obOffer.product %}
+                    <tr class="cart__item" data-position-id="{{ obCartPosition.id }}" data-offer-id="{{ obOffer.id }}">
+                        <td class="cart__picture align-middle">
+                            <a href="{{ obProduct.getPageUrl('product') }}" class="cart__img-wrap d-block">
+                                <img class="cart__img" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            <a class="cart__product-name font-weight-bold d-block mb-2" href="{{ obProduct.getPageUrl() }}">
+                                {{ obProduct.name }}
+                            </a>
+                            <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="cart__category-product-column text-black-50">
+                                {{ obProduct.category.name }}
+                            </a>
+                        </td>
+                        <td class="cart__price align-middle">
+                            <div class="cart__price-bar d-flex flex-column">
+                            <span class="cart__current-price pr-2 font-weight-bold {{ obOffer.old_price_value > 0 ? 'text-danger' : '' }} d-block mb-1">
+                                {{ obOffer.price }}  {{ obOffer.currency }}
+                            </span>
+                                {% if obOffer.old_price_value > 0 %}
+                                    <span class="cart__old-price text-muted pr-2">
+                                        <s>{{ obOffer.old_price }} {{ obOffer.currency }}</s>
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </td>
+                        <td class="cart__qty align-middle">
+                            {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue=obCartPosition.quantity btnChangeQtyAjax=true %}
+                        </td>
+                        <td class="cart__amount align-middle">
+                            <span class="cart__total-price-figures" data-id="{{ obCartPosition.id }}">{{ obCartPosition.price }}</span> {{ obCartPosition.currency }}
+                        </td>
+                        <td class="cart__delete-position align-middle">
+                            <button class="btn btn-outline-secondary btn_bg-white cart__delete-btn" aria-label="Delete" data-id="{{ obOffer.id }}">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <div class="cart__total mb-5">
         <div class="cart__total-position row mb-3">
             <span class="cart__total-position-title col-6 font-weight-bold">Position price:</span>
             <span class="cart__total-position-current-price col-3 text-right">
@@ -85,7 +89,8 @@
                 <span class="cart__total-shipping-old-price-currency">$</span>
             </span>
         </div>
-        <div class="cart__total-price row mb-3">
+        <hr>
+        <div class="cart__total-price row mb-3 pt-3">
             <span class="cart__total-price-title col-6 font-weight-bold">Total price:</span>
             <span class="cart__total-price-current-price col-3 text-right">
                 <span class="cart__total-price-current-price-figures">600</span>
@@ -98,7 +103,7 @@
         </div>
     </div>
     {% endif %}
-    <h2 class="cart__empty container mt-4 text-center {% if obCartPositionList.isNotEmpty() %}d-none{% endif %}">Your cart is empty.</h2>
+    <h2 class="cart__empty mt-4 mb-4 text-center {% if obCartPositionList.isNotEmpty() %}d-none{% endif %}">Your cart is empty.</h2>
 </section>
 
 

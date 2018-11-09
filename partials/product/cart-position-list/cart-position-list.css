@@ -18,6 +18,21 @@
   object-fit: cover;
 }
 
+.cart__product-name {
+  min-width: 250px;
+  color: #343a40;
+
+  &:hover {
+    color: #343a40;
+    text-decoration: none;
+    opacity: .75;
+  }
+}
+
+.cart__price {
+  min-width: 90px;
+}
+
 .cart__old-price {
   font-size: .9rem;
 }
@@ -27,6 +42,11 @@
   height: 20px;
 }
 
+.cart__amount {
+  min-width: 105px;
+  font-size: 1.3rem;
+}
+
 .cart__total-position-old-price,
 .cart__total-shipping-old-price,
 .cart__total-price-old-price {
@@ -34,5 +54,9 @@
 }
 
 .cart__total-price {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+
+  @media (min-width: 577px) {
+    font-size: 1.5rem;
+  }
 }
