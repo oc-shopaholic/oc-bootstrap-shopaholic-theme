@@ -1,11 +1,11 @@
+import CartPositionList from "./../../product/cart-position-list/cart-position-list";
+
 export default new class ButtonChangeQuantity {
   constructor() {
     /* selectors */
     this.productQuantitySelector = '.product-detailed__btn-qty';
     this.btnQuantityChangeSelector = '.product-detailed__btn-qty-change';
     this.quantitySelector = '.product-detailed__btn-qty-input';
-    this.rowWrapper = 'cart__item';
-    this.errorClass = 'bg-danger';
 
     /* variables */
     this.checkQuantityRegExp = /^\+?(0|[1-9]\d*)$/;
@@ -23,8 +23,8 @@ export default new class ButtonChangeQuantity {
     $(document).on('click', this.btnQuantityChangeSelector, function (e) {
       const $btn = $(e.currentTarget),
         $productQuantityInput = $btn.parent().find(_this.quantitySelector),
-        maxQuantity = $productQuantityInput.attr('max');
-      let productQuantity = $productQuantityInput.val();
+        maxQuantity = parseInt($productQuantityInput.attr('max'));
+      let productQuantity = parseInt($productQuantityInput.val());
 
       const isQuantityValid = _this.checkQuantityValidity(productQuantity);
 
@@ -35,7 +35,7 @@ export default new class ButtonChangeQuantity {
           _this.addQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
         }
         if ($btn.attr('data-ajax') === 'updateTotal') {
-          _this.sendRequestUpdateTotal($btn);
+          CartPositionList.sendRequestUpdateItem($btn);
         }
       }
     });
@@ -81,30 +81,5 @@ export default new class ButtonChangeQuantity {
     if (newValue < maxQuantity) {
       $maxBtn.attr('disabled', false);
     }
-  }
-
-  sendRequestUpdateTotal($btn) {
-
-    const row = $btn.parents(`.${this.rowWrapper}`),
-      quantity = row.find('input[name=quantity]').val(),
-      maxQuantity = row.find('input[name=quantity]').attr('max'),
-      data = {
-      'cart': [
-        {
-          'offer_id': row.attr('data-offer-id'),
-          'quantity': quantity
-        }
-      ],
-    };
-
-    if (quantity > maxQuantity) {
-      row.addClass(this.errorClass);
-    } else {
-      row.removeClass(this.errorClass);
-    }
-
-    $.request('Cart::onUpdate', {
-      'data': data,
-    });
   }
 }();

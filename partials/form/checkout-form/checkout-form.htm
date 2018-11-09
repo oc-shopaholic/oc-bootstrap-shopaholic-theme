@@ -52,7 +52,7 @@
                     <div class="col-12">
                         {% for obShippingType in obShippingTypeList %}
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="order[shipping_type_id]" id="sipping-type-{{ obShippingType.id }}" value="{{ obShippingType.id }}" required {% if loop.first %}checked{% endif %}>
+                            <input class="form-check-input" type="radio" name="shipping_type_id" id="sipping-type-{{ obShippingType.id }}" value="{{ obShippingType.id }}" required {% if loop.first %}checked{% endif %}>
                             <label class="form-check-label" for="sipping-type-{{ obShippingType.id }}">
                                 {{ obShippingType.name }} - {{ obShippingType.price }} {{ obShippingType.currency }}
                             </label>
@@ -70,7 +70,7 @@
                     <div class="col-12">
                         {% for obPaymentMethod in obPaymentMethodList %}
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="order[payment_method_id]" id="payment-method-{{ obPaymentMethod.id }}" value="{{ obPaymentMethod.id }}" required {% if loop.first %}checked{% endif %}>
+                                <input class="form-check-input" type="radio" name="payment_method_id" id="payment-method-{{ obPaymentMethod.id }}" value="{{ obPaymentMethod.id }}" required {% if loop.first %}checked{% endif %}>
                                 <label class="form-check-label" for="payment-method-{{ obPaymentMethod.id }}">
                                     {{ obPaymentMethod.name }}
                                 </label>

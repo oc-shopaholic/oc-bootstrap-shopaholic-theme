@@ -29,6 +29,7 @@
 
 .cart__total-position-old-price,
 .cart__total-shipping-old-price,
+.cart__position-old-price-figures,
 .cart__total-price-old-price {
   text-decoration: line-through;
 }
