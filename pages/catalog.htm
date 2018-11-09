@@ -51,15 +51,23 @@ last_button_limit = 3
         {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
         {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
     ] %}
+    {% set arSEOParams = {'main_category': obMainCategory, 'categpry': obCategory} %}
 {% else %}
     {% set arBreadcrumbs = [
         {'name': 'Home', 'url': 'index'|page},
         {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')}
     ] %}
+    {% set arSEOParams = {'main_category': obMainCategory} %}
+{% endif %}
+
+{% if seo_toolbox_is_available %}
+    {% put seo_tags %}
+    {% component 'SeoToolbox' model=obActiveCategory params=arSEOParams %}
+    {% endput %}
 {% endif %}
 
 {% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
-{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory  %}
+{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory %}
 {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 {% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
 {% partial 'product/catalog-product-list/catalog-product-list' %}

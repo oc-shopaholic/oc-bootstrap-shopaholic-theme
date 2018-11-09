@@ -24,6 +24,11 @@ function onInit()
         $this['cart_is_available'] = true;
         $this->addComponent('Lovata\OrdersShopaholic\Components\Cart', 'Cart', []);
     }
+
+    if ($obManager->hasComponent('Lovata\MightySeo\Components\SeoToolbox')) {
+        $this['seo_toolbox_is_available'] = true;
+        $this->addComponent('Lovata\MightySeo\Components\SeoToolbox', 'SeoToolbox', []);
+    }
 }
 ?>
 ==
@@ -33,6 +38,11 @@ function onInit()
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ path_css }}">
     {% styles %}
+    {% if seo_toolbox_is_available %}
+        {% placeholder seo_tags default %}
+            {% component 'SeoToolbox' %}
+        {% endplaceholder %}
+    {% endif %}
 </head>
 <body class="body">
     {% partial 'header/header' %}
