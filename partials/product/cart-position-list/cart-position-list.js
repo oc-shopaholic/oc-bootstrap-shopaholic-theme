@@ -7,6 +7,7 @@ export default new class CartPositionList {
     this.cartTableSelector = '.cart__table';
     this.cartItemSelector = '.cart__item';
     this.buttonRemoveItemSelector = '.cart__delete-btn';
+    this.cartTotalSelector = '.cart__total';
 
     this.eventHandlers();
   }
@@ -33,13 +34,15 @@ export default new class CartPositionList {
       $cart = $(_this.cartSelector),
       cartItemsNumber = $cart.find('tbody').children().length,
       $cartTable = $(_this.cartTableSelector),
-      $cartEmpty = $(_this.cartEmptySelector);
+      $cartEmpty = $(_this.cartEmptySelector),
+      $cartTotal = $(_this.cartTotalSelector)  ;
 
     if (cartItemsNumber > 1) {
       $cartItemToRemove.remove();
     } else if (cartItemsNumber === 1) {
       $cartTable.remove();
       $cartEmpty.removeClass('d-none');
+      $cartTotal.addClass('d-none');
     }
   }
 
