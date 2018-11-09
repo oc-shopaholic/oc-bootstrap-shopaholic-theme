@@ -1,9 +1,26 @@
 <div class="input-group product-detailed__btn-qty {% if btnProductPage %} mb-3 {% endif %}">
-    <button class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="minus" {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %} type="button">
+    <button
+            class="btn btn-outline-secondary border-right-0 border btn_bg-white product-detailed__btn-qty-change"
+            data-qty="minus"
+            {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}
+            {% if btnChangeQtyValue == 1 %}disabled{% endif %}
+            type="button">
         <i class="fa fa-minus"></i>
     </button>
-    <input type="number" class="product-detailed__btn-qty-input" name="quantity" value="{{ btnChangeQtyValue }}" {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}>
-    <button class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change" data-qty="plus" {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %} type="button">
+    <input
+            type="number"
+            class="product-detailed__btn-qty-input"
+            name="quantity"
+            value="{{ btnChangeQtyValue }}"
+            min="1"
+            max="{{ btnMaxQtyValue }}"
+            {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}>
+    <button
+            class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change"
+            data-qty="plus"
+            {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}
+            {% if btnChangeQtyValue >= btnMaxQtyValue %}disabled{% endif %}
+            type="button">
         <i class="fa fa-plus"></i>
     </button>
 </div>
