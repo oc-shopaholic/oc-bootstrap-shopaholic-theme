@@ -60,7 +60,7 @@
             {% if cart_is_available %}
                 <form class="mb-0">
                     <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
-                    {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue='1' btnProductPage=true %}
+                    {% partial 'form/button-change-quantity/button-change-quantity' btnChangeQtyValue=1 btnProductPage=true btnMaxQtyValue=obOffer.quantity %}
                     {% partial 'form/button-add-to-cart/button-add-to-cart' btnAddClasses='btn-lg' %}
                 </form>
             {% endif %}

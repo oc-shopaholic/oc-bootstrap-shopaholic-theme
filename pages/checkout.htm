@@ -6,7 +6,22 @@ is_hidden = 0
 [PaymentMethodList]
 
 [ShippingTypeList]
+
+[MakeOrder]
+mode = "ajax"
+redirect_on = 1
+redirect_page = "order-complete"
 ==
+<?php
+function onInit()
+{
+    $obPluginManager = \System\Classes\PluginManager::instance();
+    $this['location_is_available'] = $obPluginManager->hasPlugin('RainLab.Location');
+}
+?>
+==
+{% set obCartPositionList = Cart.get() %}
+
 {% set arBreadcrumbs = [
     {'name': 'Home', 'url': 'index'|page},
     {'name': 'Checkout', 'url': 'checkout'|page}
@@ -14,6 +29,8 @@ is_hidden = 0
 
 <div class="container">
     {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
-    {% partial 'product/cart-position-list/cart-position-list' %}
-    {% partial 'form/checkout-form/checkout-form' %}
+    {% partial 'product/cart-position-list/cart-position-list' obCartPositionList=obCartPositionList %}
+    {% if obCartPositionList.count > 0 %}
+        {% partial 'form/checkout-form/checkout-form' %}
+    {% endif %}
 </div>

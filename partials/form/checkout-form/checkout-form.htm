@@ -1,105 +1,48 @@
-{% set obCountryList = {
-    1: {
-        name: 'Belarus',
-        id: '1'
-    },
-    2: {
-        name: 'Russia',
-        id: '2'
-    }
-} %}
-
-{% set obCityList = {
-    1: {
-        name: 'Minsk',
-        id: '1'
-    },
-    2: {
-        name: 'Brest',
-        id: '2'
-    },
-    3: {
-        name: 'Grodno',
-        id: '3'
-    }
-} %}
-
 <section class="row form pt-4">
-    <form class="col-12 col-lg-8 needs-validation" novalidate>
+    <form class="col-12 col-lg-8 needs-validation _ajax_create_order" novalidate>
         <div class="row">
             <div class="col-sm-6 mb-3">
-                <input type="text" class="form-control" placeholder="First name" required>
+                <input type="text" class="form-control" name="name" placeholder="First name" required>
                 <div class="invalid-feedback">
                     Please add your name
                 </div>
             </div>
             <div class="col-sm-6 mb-3">
-                <input type="text" class="form-control" placeholder="Last name" required>
+                <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
                 <div class="invalid-feedback">
                     Please add your last name
                 </div>
             </div>
         </div>
         <div class="form-group mb-3">
-            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <label class="sr-only" for="inlineFormInputGroup">Email</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username" required>
+                <input type="text" class="form-control" id="inlineFormInputGroup" name="email" placeholder="Email" required>
                 <div class="invalid-feedback">
-                    Please choose a username
+                    Please add your email
                 </div>
             </div>
         </div>
-        <div class="form-group mb-3">
-            <label for="inputEmail">Email (optional)</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="youremail@example.com">
-        </div>
         <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            <input type="text" class="form-control" id="inputAddress" name="address1" placeholder="1234 Main St" required>
             <div class="invalid-feedback">
                 Please add your address
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress2">Address 2 (optional)</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment or suite">
+            <input type="text" class="form-control" id="inputAddress2" name="address2" placeholder="Apartment or suite">
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label for="inputCountry">Country</label>
-                <select id="inputCountry" class="form-control" required>
-                    <option value="">Choose...</option>
-                    {% for country in obCountryList %}
-                        <option value="{{ country.id }}">{{ country.name }}</option>
-                    {% endfor %}
-                </select>
-                <div class="invalid-feedback">
-                    Please provide a valid country
-                </div>
-            </div>
-            <div class="form-group col-md-5">
-                <label for="inputCity">City</label>
-                <select id="inputCity" class="form-control" required>
-                    <option value="">Choose...</option>
-                    {% for city in obCityList %}
-                        <option value="{{ city.id }}">{{ city.name }}</option>
-                    {% endfor %}
-                </select>
-                <div class="invalid-feedback">
-                    Please provide a valid city
-                </div>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip" required>
-                <div class="invalid-feedback">
-                    Please provide a valid zip
-                </div>
-            </div>
+
+        {% if location_is_available %}
+        <div class="form-row _ajax_location_select_wrapper">
+            {% partial 'form/locataion-select/locataion-select' %}
         </div>
+        {% endif %}
         <hr>
 
         {% set obShippingTypeList = ShippingTypeList.make().sort().active() %}
@@ -109,17 +52,17 @@
                     <div class="col-12">
                         {% for obShippingType in obShippingTypeList %}
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="order[shipping_type_id]" id="inputCourier" value="{{ obShippingType.id }}" required>
-                            <label class="form-check-label" for="inputCourier">
-                                {{ obShippingType.name }}
+                            <input class="form-check-input" type="radio" name="order[shipping_type_id]" id="sipping-type-{{ obShippingType.id }}" value="{{ obShippingType.id }}" required {% if loop.first %}checked{% endif %}>
+                            <label class="form-check-label" for="sipping-type-{{ obShippingType.id }}">
+                                {{ obShippingType.name }} - {{ obShippingType.price }} {{ obShippingType.currency }}
                             </label>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
             </fieldset>
+            <hr>
         {% endif %}
-        <hr>
         {% set obPaymentMethodList = PaymentMethodList.make().sort().active() %}
         {% if obPaymentMethodList.isNotEmpty() %}
             <fieldset class="form-group">
@@ -127,8 +70,8 @@
                     <div class="col-12">
                         {% for obPaymentMethod in obPaymentMethodList %}
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="order[payment_method_id]" id="inputCard" value="{{ obPaymentMethod.id }}" required>
-                                <label class="form-check-label" for="inputCard">
+                                <input class="form-check-input" type="radio" name="order[payment_method_id]" id="payment-method-{{ obPaymentMethod.id }}" value="{{ obPaymentMethod.id }}" required {% if loop.first %}checked{% endif %}>
+                                <label class="form-check-label" for="payment-method-{{ obPaymentMethod.id }}">
                                     {{ obPaymentMethod.name }}
                                 </label>
                             </div>
@@ -138,7 +81,7 @@
             </fieldset>
         {% endif %}
         <div class="form-group">
-            <button type="submit" class="btn btn-dark w-100 text-uppercase">continue to checkout</button>
+            <button type="submit" class="btn btn-dark w-100 text-uppercase _create_order_button" data-container="body" data-toggle="popover" data-placement="top" data-content="">continue to checkout</button>
         </div>
     </form>
 </section>

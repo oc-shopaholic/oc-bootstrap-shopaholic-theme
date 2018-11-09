@@ -1,7 +1,10 @@
 title = "order complete"
-url = "/order-complete"
+url = "/checkout/:slug"
 layout = "light"
 is_hidden = 0
-==
 
+[OrderPage]
+slug = "{{ :slug }}"
+slug_required = 1
+==
 {% partial 'order/order-complete/order-complete' %}

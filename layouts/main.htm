@@ -19,7 +19,7 @@ function onInit()
      * Check if Cart component has been registered and autoload it
      **/
 
-      $obManager = \Cms\Classes\ComponentManager::instance();
+    $obManager = \Cms\Classes\ComponentManager::instance();
     if ($obManager->hasComponent('Lovata\OrdersShopaholic\Components\Cart')) {
         $this['cart_is_available'] = true;
         $this->addComponent('Lovata\OrdersShopaholic\Components\Cart', 'Cart', []);

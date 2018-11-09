@@ -1,67 +1,110 @@
 export default new class ButtonChangeQuantity {
-    constructor () {
-        /* selectors */
-        this.productQuantitySelector = '.product-detailed__btn-qty';
-        this.btnQuantityChangeSelector = '.product-detailed__btn-qty-change';
-        this.quantitySelector = '.product-detailed__btn-qty-input';
-        this.totalPriceSelector = '.cart__total-price-figures';
+  constructor() {
+    /* selectors */
+    this.productQuantitySelector = '.product-detailed__btn-qty';
+    this.btnQuantityChangeSelector = '.product-detailed__btn-qty-change';
+    this.quantitySelector = '.product-detailed__btn-qty-input';
+    this.rowWrapper = 'cart__item';
+    this.errorClass = 'bg-danger';
 
-        /* variables */
-        this.checkQuantityRegExp = /^\+?(0|[1-9]\d*)$/;
+    /* variables */
+    this.checkQuantityRegExp = /^\+?(0|[1-9]\d*)$/;
 
-        this.eventHandlers();
+    this.eventHandlers();
+  }
+
+  eventHandlers() {
+    if (!$(this.productQuantitySelector).length) {
+      return;
     }
 
-    eventHandlers () {
-        if(!$(this.productQuantitySelector).length) {
-            return;
+    const _this = this;
+
+    $(document).on('click', this.btnQuantityChangeSelector, function (e) {
+      const $btn = $(e.currentTarget),
+        $productQuantityInput = $btn.parent().find(_this.quantitySelector),
+        maxQuantity = $productQuantityInput.attr('max');
+      let productQuantity = $productQuantityInput.val();
+
+      const isQuantityValid = _this.checkQuantityValidity(productQuantity);
+
+      if (isQuantityValid) {
+        if ($btn.attr('data-qty') === 'minus') {
+          _this.reduceQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
+        } else if ($btn.attr('data-qty') === 'plus') {
+          _this.addQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
         }
-
-        const _this = this;
-
-        $(document).on('click', this.btnQuantityChangeSelector, function(e) {
-            const $btn = $(e.currentTarget);
-            const $productQuantityInput = $btn.parent().find(_this.quantitySelector);
-            let productQuantity = $productQuantityInput.val();
-
-            const isQuantityValid = _this.checkQuantityValidity(productQuantity);
-
-            if (isQuantityValid) {
-                if($btn.attr('data-qty') === 'minus') {
-                    _this.reduceQuantity($productQuantityInput, productQuantity);
-                } else if ($btn.attr('data-qty') === 'plus') {
-                    _this.addQuantity($productQuantityInput, productQuantity);
-                }
-                if($btn.attr('data-ajax') === 'updateTotal') {
-                    _this.sendRequestUpdateTotal($btn);
-                }
-            }
-        });
-    }
-
-    checkQuantityValidity (quantity) {
-        const _this = this;
-
-        return _this.checkQuantityRegExp.test(quantity);
-    }
-
-    addQuantity (productQuantityInput, productQuantity) {
-        $(productQuantityInput).val(+productQuantity + 1);
-    }
-
-    reduceQuantity (productQuantityInput, productQuantity) {
-        if (productQuantity > 1) {
-            $(productQuantityInput).val(+productQuantity - 1);
+        if ($btn.attr('data-ajax') === 'updateTotal') {
+          _this.sendRequestUpdateTotal($btn);
         }
+      }
+    });
+  }
+
+  checkQuantityValidity(quantity) {
+    const _this = this;
+
+    return _this.checkQuantityRegExp.test(quantity);
+  }
+
+  addQuantity(productQuantityInput, productQuantity, maxQuantity, $btn) {
+    const newValue = +productQuantity + 1,
+      $minBtn = $btn.parent().find('button[data-qty="minus"]');
+    if (newValue > maxQuantity) {
+      $btn.attr('disabled', 'disabled');
+      return;
     }
 
-    sendRequestUpdateTotal ($btn) {
-        const _this = this;
-
-        console.log('update total'); /* for backend */
-
-        let $totalPrice = $btn.parent().parent().next().find(_this.totalPriceSelector);
-        $totalPrice.text('updated');
+    if (newValue > 1) {
+      $minBtn.attr('disabled', false);
     }
 
-} ();
+    if (newValue >= maxQuantity) {
+      $btn.attr('disabled', 'disabled');
+    }
+
+    $(productQuantityInput).val(+productQuantity + 1);
+  }
+
+  reduceQuantity(productQuantityInput, productQuantity, maxQuantity, $btn) {
+    const newValue = +productQuantity - 1,
+      $maxBtn = $btn.parent().find('button[data-qty="plus"]');
+
+    if (productQuantity > 1) {
+      $(productQuantityInput).val(newValue);
+    }
+
+    if (newValue <= 1) {
+      $btn.attr('disabled', 'disabled');
+    }
+
+    if (newValue < maxQuantity) {
+      $maxBtn.attr('disabled', false);
+    }
+  }
+
+  sendRequestUpdateTotal($btn) {
+
+    const row = $btn.parents(`.${this.rowWrapper}`),
+      quantity = row.find('input[name=quantity]').val(),
+      maxQuantity = row.find('input[name=quantity]').attr('max'),
+      data = {
+      'cart': [
+        {
+          'offer_id': row.attr('data-offer-id'),
+          'quantity': quantity
+        }
+      ],
+    };
+
+    if (quantity > maxQuantity) {
+      row.addClass(this.errorClass);
+    } else {
+      row.removeClass(this.errorClass);
+    }
+
+    $.request('Cart::onUpdate', {
+      'data': data,
+    });
+  }
+}();
