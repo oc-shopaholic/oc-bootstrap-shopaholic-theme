@@ -1,0 +1,39 @@
+title = "Promo block (list)"
+url = "/promo"
+layout = "main"
+is_hidden = 0
+
+[PromoBlockList]
+sorting = "date_begin|desc"
+
+[Pagination]
+available_count_per_page = 12
+count_per_page = 6
+pagination_limit = 5
+active_class = "_act"
+button_list = "first,prev,main,next,last"
+first_button_name = "First"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 1
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 1
+last_button_name = "Last"
+last_button_limit = 3
+==
+
+{% set arBreadcrumbs = [
+    {'name': 'Home', 'url': 'index'|page},
+    {'name': 'Promo', 'url': ''},
+] %}
+
+{% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+{% partial 'promo-block/promo-block-list/promo-block-list' %}

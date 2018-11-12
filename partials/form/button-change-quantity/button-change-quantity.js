@@ -20,25 +20,33 @@ export default new class ButtonChangeQuantity {
 
     const _this = this;
 
-    $(document).on('click', this.btnQuantityChangeSelector, function (e) {
-      const $btn = $(e.currentTarget),
-        $productQuantityInput = $btn.parent().find(_this.quantitySelector),
-        maxQuantity = parseInt($productQuantityInput.attr('max'));
-      let productQuantity = parseInt($productQuantityInput.val());
+    $(document)
+        .on('click', this.btnQuantityChangeSelector, function (e) {
+            const $btn = $(e.currentTarget),
+            $productQuantityInput = $btn.parent().find(_this.quantitySelector),
+            maxQuantity = parseInt($productQuantityInput.attr('max'));
+            let productQuantity = parseInt($productQuantityInput.val());
 
-      const isQuantityValid = _this.checkQuantityValidity(productQuantity);
+            const isQuantityValid = _this.checkQuantityValidity(productQuantity);
 
-      if (isQuantityValid) {
-        if ($btn.attr('data-qty') === 'minus') {
-          _this.reduceQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
-        } else if ($btn.attr('data-qty') === 'plus') {
-          _this.addQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
-        }
-        if ($btn.attr('data-ajax') === 'updateTotal') {
-          CartPositionList.sendRequestUpdateItem($btn);
-        }
-      }
-    });
+            if (isQuantityValid) {
+                if ($btn.attr('data-qty') === 'minus') {
+                  _this.reduceQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
+                } else if ($btn.attr('data-qty') === 'plus') {
+                  _this.addQuantity($productQuantityInput, productQuantity, maxQuantity, $btn);
+                }
+                if ($btn.attr('data-ajax') === 'updateTotal') {
+                  CartPositionList.sendRequestUpdateItem($btn);
+                }
+            }
+        })
+        .on('change', this.quantitySelector, function (e) {
+            const $input = $(e.currentTarget);
+
+            if($input.attr('data-ajax') === 'updateTotal') {
+                CartPositionList.sendRequestUpdateItem($input);
+            }
+        });
   }
 
   checkQuantityValidity(quantity) {

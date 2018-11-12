@@ -2,11 +2,11 @@
 {# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 {# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 
-{% if obMainCategory.children.isNotEmpty() %}
 <section class="category">
     <div class="container">
         <div class="row justify-content-lg-between">
             <div class="col-lg-6 navbar navbar-expand-lg navbar-dark bg-dark">
+                {% if obMainCategory.children.isNotEmpty() %}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNav" aria-controls="categoryNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon text-light"></span>
@@ -26,6 +26,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
             <div class="col-auto col-md-6 col-lg-auto sorting__wrapper">
                 {% partial 'product/product-sorting/product-sorting' %}
@@ -33,4 +34,3 @@
         </div>
     </div>
 </section>
-{% endif %}

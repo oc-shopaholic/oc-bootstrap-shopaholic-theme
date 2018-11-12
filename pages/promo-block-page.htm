@@ -1,0 +1,58 @@
+title = "Promo block page"
+url = "/promo/:slug"
+layout = "main"
+is_hidden = 0
+
+[PromoBlockPage]
+slug = "{{ :slug }}"
+slug_required = 1
+
+[ProductList]
+sorting = "new"
+
+[Pagination]
+available_count_per_page = 12
+count_per_page = 6
+pagination_limit = 5
+active_class = "_act"
+button_list = "first,prev,main,next,last"
+first_button_name = "First"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 1
+prev_button_name = "Prev"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Next"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 1
+last_button_name = "Last"
+last_button_limit = 3
+==
+{# @var obPromoBlock \Lovata\Shopaholic\Classes\Item\PromoBlockItem #}
+
+{% set obPromoBlock = PromoBlockPage.get() %}
+
+{% set arBreadcrumbs = [
+    {'name': 'Home', 'url': 'index'|page},
+    {'name': 'Promo', 'url': 'promo-block-list'|page},
+    {'name': obPromoBlock.name, 'url': ''}
+] %}
+{% set arSEOParams = {'promo_block': obPromoBlock} %}
+
+{% if seo_toolbox_is_available %}
+    {% put seo_tags %}
+    {% component 'SeoToolbox' model=obPromoBlock params=arSEOParams %}
+    {% endput %}
+{% endif %}
+
+{% partial 'content/picture-preview-top/picture-preview-top' obImage=obPromoBlock.images.first() %}
+{% partial 'product/catalog-panel/catalog-panel' label='promo-block-product-list' %}
+{% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+{% partial 'content/text-preview/text-preview' sPreviewText=obPromoBlock.preview_text %}
+{% partial 'product/promo-block-product-list/promo-block-product-list' %}
+{% partial 'content/wysiwyg/wysiwyg' sContent=obPromoBlock.description %}

@@ -1,15 +1,11 @@
 {% spaceless %}
 
-{# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
-{# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
-{# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+{# @var obPromoBlock \Lovata\Shopaholic\Classes\Item\PromoBlockItem #}
 
-{% set obCategory = CategoryPage.get() %}
-{% set obMainCategory = MainCategoryPage.get() %}
-{% set obActiveCategory = obCategory.isNotEmpty() ? obCategory : obMainCategory %}
+{% set obPromoBlock = PromoBlockPage.get() %}
 
 {# Get product collection #}
-{% set obProductList = ProductList.make().active().sort(ProductList.getSorting()).category(obActiveCategory.id, true) %}
+{% set obProductList = ProductList.make().active().sort(ProductList.getSorting()).promo(obPromoBlock.id) %}
 
 {# Get array with pagination buttons #}
 {% set iPage = Pagination.getPageFromRequest() %}
@@ -27,7 +23,7 @@
         {% endfor %}
         </div>
     </ul>
-    {% partial 'navigation/pagination/pagination' iCount=obProductList.count() pagingLabel='catalog-product-list' %}
+    {% partial 'navigation/pagination/pagination' iCount=obProductList.count() pagingLabel='promo-block-product-list' %}
 {% else %}
     <div>Products not found</div>
 {% endif %}

@@ -1,4 +1,4 @@
-title = "product page"
+title = "Product page"
 url = "/:main_category/:category/:slug"
 layout = "main"
 is_hidden = 0
@@ -19,12 +19,20 @@ slug_required = 1
 {% set obMainCategory = MainCategoryPage.get() %}
 {% set obCategory = CategoryPage.get() %}
 
+{% set arSEOParams = {'product': obProduct} %}
 {% set arBreadcrumbs = [
     {'name': 'Home', 'url': 'index'|page},
     {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
     {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')},
     {'name': obProduct.name, 'url': obProduct.getPageUrl('product')},
 ] %}
+
+
+{% if seo_toolbox_is_available %}
+    {% put seo_tags %}
+        {% component 'SeoToolbox' model=obProduct params=arSEOParams %}
+    {% endput %}
+{% endif %}
 
 {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 {% partial 'product/product-card-detailed/product-card-detailed' obProduct=obProduct %}

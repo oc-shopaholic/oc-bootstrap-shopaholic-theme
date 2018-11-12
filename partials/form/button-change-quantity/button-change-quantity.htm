@@ -13,7 +13,8 @@
             name="quantity"
             value="{{ btnChangeQtyValue }}"
             min="1"
-            max="{{ btnMaxQtyValue }}">
+            max="{{ btnMaxQtyValue }}"
+            {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}>
     <button
             class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change"
             data-qty="plus"

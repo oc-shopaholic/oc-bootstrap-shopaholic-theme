@@ -1,4 +1,4 @@
-title = "catalog"
+title = "Catalog"
 url = "/:main_category/:category?"
 layout = "main"
 is_hidden = 0
@@ -16,7 +16,7 @@ sorting = "new"
 
 [Pagination]
 available_count_per_page = 12
-count_per_page = 12
+count_per_page = 6
 pagination_limit = 5
 active_class = "_act"
 button_list = "first,prev,main,next,last"
@@ -25,13 +25,13 @@ first_button_limit = 3
 first-more_button_name = "..."
 first-more_button_limit = 1
 prev_button_name = "Prev"
-prev_button_limit = 3
+prev_button_limit = 1
 prev-more_button_name = "..."
 prev-more_button_limit = 1
 next-more_button_name = "..."
 next-more_button_limit = 1
 next_button_name = "Next"
-next_button_limit = 3
+next_button_limit = 1
 last-more_button_name = "..."
 last-more_button_limit = 1
 last_button_name = "Last"
@@ -51,15 +51,23 @@ last_button_limit = 3
         {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
         {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
     ] %}
+    {% set arSEOParams = {'main_category': obMainCategory, 'categpry': obCategory} %}
 {% else %}
     {% set arBreadcrumbs = [
         {'name': 'Home', 'url': 'index'|page},
         {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')}
     ] %}
+    {% set arSEOParams = {'main_category': obMainCategory} %}
+{% endif %}
+
+{% if seo_toolbox_is_available %}
+    {% put seo_tags %}
+    {% component 'SeoToolbox' model=obActiveCategory params=arSEOParams %}
+    {% endput %}
 {% endif %}
 
 {% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
-{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory  %}
+{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory label='catalog-product-list' %}
 {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 {% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
 {% partial 'product/catalog-product-list/catalog-product-list' %}

@@ -1,6 +1,10 @@
 [staticMenu HeaderStaticMenu]
 code = "header-menu"
 
+[staticPage]
+useContent = 1
+default = 0
+
 [staticMenu FooterStaticMenu]
 code = "footer-menu"
 ==
@@ -44,7 +48,9 @@ function onInit()
 <body class="body">
     {% partial 'header/header' %}
     <div class="site-content">
-        {% page %}
+        <div class="container wysiwyg">
+            {% page %}
+        </div>
     </div>
     {% partial 'footer/footer' %}
 <script src="{{ path_js }}"></script>
