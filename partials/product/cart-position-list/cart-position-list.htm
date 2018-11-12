@@ -74,34 +74,34 @@
     </div>
     <div class="cart__total mb-5">
         <div class="cart__total-position row mb-3">
-            <span class="cart__total-position-title col-4 font-weight-bold">Position price:</span>
-            <span class="cart__total-position-old-price col-4 text-right text-muted">
+            <span class="cart__total-position-title col-6 col-lg-4 font-weight-bold">Position price:</span>
+            <span class="cart__total-position-old-price col-3 col-lg-2 text-right text-muted">
                 <span class="cart__total-position-old-price-value {% if obCartPositionList.getDiscountTotalPriceValue() == 0 %}d-none{% endif %}">{{ obCartPositionList.getOldTotalPrice() }}</span>
                 <span class="cart__total-position-old-price-currency {% if obCartPositionList.getDiscountTotalPriceValue() == 0 %}d-none{% endif %}">{{ Cart.getCurrency() }}</span>
             </span>
-            <span class="cart__total-position-current-price col-4 text-right">
+            <span class="cart__total-position-current-price col-3 col-lg-2 text-right">
                 <span class="cart__total-position-price-value">{{ obCartPositionList.getTotalPrice() }}</span>
                 <span class="cart__total-position-price-currency">{{ Cart.getCurrency() }}</span>
             </span>
         </div>
         <div class="cart__total-shipping row mb-3">
-            <span class="cart__total-shipping-title col-4 font-weight-bold">Shipping price:</span>
-            <span class="cart__total-shipping-old-price col-4 text-right text-muted">
+            <span class="cart__total-shipping-title col-6 col-lg-4 font-weight-bold">Shipping price:</span>
+            <span class="cart__total-shipping-old-price col-3 col-lg-2 text-right text-muted">
                 <span class="cart__total-shipping-old-price-value {% if obActiveShippingType.discount_price_value == 0 %}d-none{% endif %}">{{ obActiveShippingType.old_price }}</span>
                 <span class="cart__total-shipping-old-price-currency {% if obActiveShippingType.discount_price_value == 0 %}d-none{% endif %}">{{ Cart.getCurrency() }}</span>
             </span>
-            <span class="cart__total-shipping-current-price col-4 text-right">
+            <span class="cart__total-shipping-current-price col-3 col-lg-2 text-right">
                 <span class="cart__total-shipping-price-value">{{ obActiveShippingType.price }}</span>
                 <span class="cart__total-shipping-price-currency">{{ Cart.getCurrency() }}</span>
             </span>
         </div>
         <div class="cart__total-price row mb-3 pt-3">
-            <span class="cart__total-price-title col-4 font-weight-bold">Total price:</span>
-            <span class="cart__total-price-old-price col-4 text-right text-muted">
+            <span class="cart__total-price-title col-6 col-lg-4 font-weight-bold">Total price:</span>
+            <span class="cart__total-price-old-price col-3 col-lg-2 text-right text-muted">
                 <span class="cart__total-price-old-price-value {% if Cart.getDiscountTotalPriceValue() == 0 %}d-none{% endif %}">{{ Cart.getOldTotalPrice() }}</span>
                 <span class="cart__total-price-old-price-currency {% if Cart.getDiscountTotalPriceValue() == 0 %}d-none{% endif %}">{{ Cart.getCurrency() }}</span>
             </span>
-            <span class="cart__total-price-current-price col-4 text-right">
+            <span class="cart__total-price-current-price col-3 col-lg-2 text-right">
                 <span class="cart__total-price-price-value">{{ Cart.getTotalPrice() }}</span>
                 <span class="cart__total-price-price-currency">{{ Cart.getCurrency() }}</span>
             </span>
