@@ -61,3 +61,6 @@
     font-size: 1.5rem;
   }
 }
+.cart__item .cart__total-price {
+  min-width: 120px;
+}
