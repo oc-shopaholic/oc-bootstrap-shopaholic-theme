@@ -1,10 +1,14 @@
 import CatalogProductList from './../../product/catalog-product-list/catalog-product-list';
+import PromoBlockProductList from './../../product/promo-block-product-list/promo-block-product-list';
+import PromoBlockList from './../../promo-block/promo-block-list/promo-block-list';
 
 export default new class Pagination {
     constructor() {
        this.btnPage = 'page-link';
        this.activeClass = 'active';
        this.catalogProductListLabel = 'catalog-product-list';
+       this.promoBlockListLabel = 'promo-block-list';
+       this.promoBlockProductListLabel = 'promo-block-product-list';
 
         this.eventHandlers();
     }
@@ -25,6 +29,12 @@ export default new class Pagination {
            switch (label) {
              case this.catalogProductListLabel:
                CatalogProductList.updateProductList(page);
+               break;
+             case this.promoBlockListLabel:
+               PromoBlockList.updatePromoBlockList(page);
+               break;
+             case this.promoBlockProductListLabel:
+               PromoBlockProductList.updateProductList(page);
                break;
            }
         });

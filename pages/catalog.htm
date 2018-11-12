@@ -1,4 +1,4 @@
-title = "catalog"
+title = "Catalog"
 url = "/:main_category/:category?"
 layout = "main"
 is_hidden = 0
@@ -16,7 +16,7 @@ sorting = "new"
 
 [Pagination]
 available_count_per_page = 12
-count_per_page = 12
+count_per_page = 6
 pagination_limit = 5
 active_class = "_act"
 button_list = "first,prev,main,next,last"
@@ -67,7 +67,7 @@ last_button_limit = 3
 {% endif %}
 
 {% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
-{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory %}
+{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory label='catalog-product-list' %}
 {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
 {% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
 {% partial 'product/catalog-product-list/catalog-product-list' %}

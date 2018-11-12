@@ -2,7 +2,7 @@ name: Free E-Commerce Bootstrap for Shopaholic
 description: ''
 author: Lovata
 homepage: ''
-code: 'free-ecommerce-bootstrap-shopaholic'
+code: 'bootstrap-shopaholic'
 form: config/fields.yaml
 require:
     - RainLab.Pages

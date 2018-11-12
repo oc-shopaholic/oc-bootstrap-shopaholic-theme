@@ -1,0 +1,30 @@
+{% spaceless %}
+
+{# @var obPromoBlock \Lovata\Shopaholic\Classes\Item\PromoBlockItem #}
+
+{% set obPromoBlock = PromoBlockPage.get() %}
+
+{# Get product collection #}
+{% set obProductList = ProductList.make().active().sort(ProductList.getSorting()).promo(obPromoBlock.id) %}
+
+{# Get array with pagination buttons #}
+{% set iPage = Pagination.getPageFromRequest() %}
+
+{# Apply pagination to product collection and get array with product items #}
+{% set arProductList = obProductList.page(iPage, Pagination.getCountPerPage()) %}
+
+{% if arProductList is not empty %}
+    <ul class="catalog__list col-12 list-unstyled">
+        <div class="row flex-wrap">
+        {% for obProduct in arProductList %}
+            <li class="catalog__item col-lg-4 col-sm-6 col-12">
+                {% partial 'product/product-card/product-card' obProduct=obProduct obActiveCategory=obActiveCategory %}
+            </li>
+        {% endfor %}
+        </div>
+    </ul>
+    {% partial 'navigation/pagination/pagination' iCount=obProductList.count() pagingLabel='promo-block-product-list' %}
+{% else %}
+    <div>Products not found</div>
+{% endif %}
+{% endspaceless %}

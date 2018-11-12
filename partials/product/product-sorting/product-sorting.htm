@@ -2,7 +2,7 @@
 
 <form class="mb-lg-0">
     <div class="form-group sorting mb-0">
-        <select class="form-control sorting__select" name="sorting">
+        <select class="form-control sorting__select" name="sorting" aria-label="{{ label }}">
             <option value="new" {% if sSortig == 'new' %}selected{% endif %}>New</option>
             <option value="price|asc" {% if sSortig == 'price|asc' %}selected{% endif %}>Low price first</option>
             <option value="price|desc" {% if sSortig == 'price|desc' %}selected{% endif %}>High price first</option>
