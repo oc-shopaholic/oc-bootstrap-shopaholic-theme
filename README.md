@@ -13,6 +13,6 @@ Example of usage laravel-mix:
 
 ## License
 
-© 2018, [LOVATA Group, LLC](https://github.com/lovata) under Commercial License.
+© 2018, [LOVATA Group, LLC](https://github.com/lovata) under [GNU GPL v3](https://opensource.org/licenses/GPL-3.0).
 
 Developed by [LOVATA](https://lovata.com).
