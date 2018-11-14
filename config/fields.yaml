@@ -87,7 +87,7 @@ tabs:
       tab: Index page
       span: left
       type: partial
-      path: ~/themes/lovata-bootstrapshopaholic/config/_extend_field.htm
+      path: ~/themes/lovata-bootstrap-shopaholic/config/_extend_field.htm
     promo_block_left:
       tab: Index page
       span: left
