@@ -44,8 +44,8 @@ export default new class CheckoutFormValidation {
 
     var data = {
       'order': {
-        'payment_method_id': form.find('input[name="payment_method_id"]').val(),
-        'shipping_type_id': form.find('input[name="shipping_type_id"]').val(),
+        'payment_method_id': form.find('input[name="payment_method_id"]:checked').val(),
+        'shipping_type_id': form.find('input[name="shipping_type_id"]:checked').val(),
       },
       'user': {
         'email': form.find('input[name="email"]').val(),
