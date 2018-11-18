@@ -6,10 +6,12 @@ is_hidden = 0
 [CategoryPage]
 slug = "{{ :category }}"
 slug_required = 0
+smart_url_check = 1
 
 [CategoryPage MainCategoryPage]
 slug = "{{ :main_category }}"
 slug_required = 1
+smart_url_check = 0
 
 [ProductList]
 sorting = "new"
@@ -51,7 +53,7 @@ last_button_limit = 3
         {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
         {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
     ] %}
-    {% set arSEOParams = {'main_category': obMainCategory, 'categpry': obCategory} %}
+    {% set arSEOParams = {'main_category': obMainCategory, 'category': obCategory} %}
 {% else %}
     {% set arBreadcrumbs = [
         {'name': 'Home', 'url': 'index'|page},

@@ -7,9 +7,9 @@ E-Commerce theme by [LOVATA](https://lovata.com) for October CMS.
 Theme uses [laravel-mix](https://laravel.com/docs/5.7/mix) to build css/js files. You can find full document about laravel-mix [here](https://laravel.com/docs/5.7/mix).
 
 Example of usage laravel-mix:
-  * go to theme folder (```cd themes/lovata-bootstrapshopaholic```)
+  * go to theme folder (```cd themes/lovata-bootstrap-shopaholic```)
   * run ```npm i``` 
-  * run ```npm run watch```, ```npm run dev```, ```npm run prod```
+  * run one of the commands: ```npm run watch```, ```npm run dev```, ```npm run prod```
 
 ## License
 
