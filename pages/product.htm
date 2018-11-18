@@ -6,14 +6,17 @@ is_hidden = 0
 [CategoryPage]
 slug = "{{ :category }}"
 slug_required = 1
+smart_url_check = 0
 
 [CategoryPage MainCategoryPage]
 slug = "{{ :main_category }}"
 slug_required = 1
+smart_url_check = 0
 
 [ProductPage]
 slug = "{{ :slug }}"
 slug_required = 1
+smart_url_check = 1
 ==
 {% set obProduct = ProductPage.get() %}
 {% set obMainCategory = MainCategoryPage.get() %}
