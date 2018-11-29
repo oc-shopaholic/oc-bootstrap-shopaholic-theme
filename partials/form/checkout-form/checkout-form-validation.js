@@ -20,7 +20,7 @@ export default new class CheckoutFormValidation {
     const forms = $(`.${this.form}`);
 
     $.each(forms, function (i, elem) {
-      $(elem).on('submit', function () {
+      $(elem).on('submit', function (event) {
         if (elem.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
