@@ -6,7 +6,7 @@ export default new class CartLinkHeader {
   }
 
   updateBlock() {
-    if ($(`.${this.ajaxWrapper}`).length == 0) {
+    if ($(`.${this.ajaxWrapper}`).length == 0 || $('body').attr('data-cart-is-available') != 1) {
       return;
     }
 
