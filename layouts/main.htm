@@ -41,7 +41,7 @@ function onInit()
         {% endplaceholder %}
     {% endif %}
 </head>
-<body class="body">
+<body class="body" data-cart-is-available="{{ cart_is_available }}">
     {% partial 'header/header' %}
     <div class="site-content">
         {% page %}
