@@ -9,14 +9,12 @@
 {% set arPromoBlockList = obPromoBlockList.page(iPage, Pagination.getCountPerPage()) %}
 
 {% if arPromoBlockList is not empty %}
-    <ul class="catalog__list col-12 list-unstyled">
-        <div class="row flex-wrap">
+    <ul class="catalog__list list-unstyled flex-wrap">
         {% for obPromoBlock in arPromoBlockList %}
             <li class="catalog__item col-lg-4 col-sm-6 col-12">
                 {% partial 'promo-block/promo-block-card/promo-block-card' obPromoBlock=obPromoBlock obActiveCategory=obActiveCategory %}
             </li>
         {% endfor %}
-        </div>
     </ul>
     {% partial 'navigation/pagination/pagination' iCount=obPromoBlockList.count() pagingLabel='promo-block-list' %}
 {% else %}
