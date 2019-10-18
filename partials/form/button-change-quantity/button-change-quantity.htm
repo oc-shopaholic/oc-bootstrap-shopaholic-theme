@@ -4,6 +4,7 @@
             data-qty="minus"
             {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}
             {% if btnChangeQtyValue == 1 %}disabled{% endif %}
+            aria-label="Increase quantity"
             type="button">
         <i class="fa fa-minus"></i>
     </button>
@@ -14,12 +15,14 @@
             value="{{ btnChangeQtyValue }}"
             min="1"
             max="{{ btnMaxQtyValue }}"
+            aria-label="Input quantity"
             {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}>
     <button
             class="btn btn-outline-secondary border-left-0 border btn_bg-white product-detailed__btn-qty-change"
             data-qty="plus"
             {% if btnChangeQtyAjax %} data-ajax="updateTotal" {% endif %}
             {% if btnChangeQtyValue >= btnMaxQtyValue %}disabled{% endif %}
+            aria-label="Decrease quantity"
             type="button">
         <i class="fa fa-plus"></i>
     </button>

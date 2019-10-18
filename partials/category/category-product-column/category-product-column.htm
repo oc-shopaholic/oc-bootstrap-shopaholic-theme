@@ -11,14 +11,14 @@
                 {% set arProductList = ProductList.make().active().category(obCategory.id, true).random(3) %}
                 <div class="col-lg-4 col-md-12 col-12 pt-5">
                     <hr>
-                    <h4 class="category-product-column__title text-center font-weight-bold text-black-50">{{ obCategory.name }}</h4>
+                    <h4 class="category-product-column__title text-center font-weight-bold text-dark">{{ obCategory.name }}</h4>
                     <hr>
                     <ul class="category-product-column__list">
                         {% for obProduct in arProductList %}
                             {% set obOffer = obProduct.offer.first() %}
                             <li class="row mt-5 py-2 mb-4 align-items-center flex-row category-product-column__list-item">
                                 <div class="col-5">
-                                    <a href="{{ obProduct.getPageUrl() }}" class="category-product-column__image-wrap">
+                                    <a href="{{ obProduct.getPageUrl() }}" class="category-product-column__image-wrap" aria-label="Read more about {{ obProduct.name }}">
                                         <img src="{{ obProduct.preview_image.getThumb(200, 200, {'quality': 80}) }}" class="category-product-column__image img-fluid" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
                                     </a>
                                 </div>

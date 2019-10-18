@@ -2,13 +2,13 @@
     <form class="col-12 col-lg-8 needs-validation _ajax_create_order" novalidate>
         <div class="row">
             <div class="col-sm-6 mb-3">
-                <input type="text" class="form-control" name="name" placeholder="First name" required>
+                <input type="text" class="form-control" name="name" placeholder="First name" aria-label="Input first name" required>
                 <div class="invalid-feedback">
                     Please add your name
                 </div>
             </div>
             <div class="col-sm-6 mb-3">
-                <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                <input type="text" class="form-control" name="last_name" placeholder="Last name" aria-label="Input last name" required>
                 <div class="invalid-feedback">
                     Please add your last name
                 </div>
@@ -48,36 +48,28 @@
         {% set obShippingTypeList = ShippingTypeList.make().sort().active() %}
         {% if obShippingTypeList.isNotEmpty() %}
             <fieldset class="form-group">
-                <div class="row">
-                    <div class="col-12">
-                        {% for obShippingType in obShippingTypeList %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="shipping_type_id" id="sipping-type-{{ obShippingType.id }}" value="{{ obShippingType.id }}" required {% if loop.first %}checked{% endif %}>
-                            <label class="form-check-label" for="sipping-type-{{ obShippingType.id }}">
-                                {{ obShippingType.name }} - {{ obShippingType.price }} {{ obShippingType.currency }}
-                            </label>
-                        </div>
-                        {% endfor %}
+                {% for obShippingType in obShippingTypeList %}
+                    <div class="form-check{% if not loop.first %} mt-2{% endif %}">
+                        <input class="form-check-input" type="radio" name="shipping_type_id" id="sipping-type-{{ obShippingType.id }}" value="{{ obShippingType.id }}" required {% if loop.first %}checked{% endif %}>
+                        <label class="form-check-label" for="sipping-type-{{ obShippingType.id }}">
+                            {{ obShippingType.name }} - {{ obShippingType.price }} {{ obShippingType.currency }}
+                        </label>
                     </div>
-                </div>
+                {% endfor %}
             </fieldset>
             <hr>
         {% endif %}
         {% set obPaymentMethodList = PaymentMethodList.make().sort().active() %}
         {% if obPaymentMethodList.isNotEmpty() %}
             <fieldset class="form-group">
-                <div class="row">
-                    <div class="col-12">
-                        {% for obPaymentMethod in obPaymentMethodList %}
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="payment_method_id" id="payment-method-{{ obPaymentMethod.id }}" value="{{ obPaymentMethod.id }}" required {% if loop.first %}checked{% endif %}>
-                                <label class="form-check-label" for="payment-method-{{ obPaymentMethod.id }}">
-                                    {{ obPaymentMethod.name }}
-                                </label>
-                            </div>
-                        {% endfor %}
+                {% for obPaymentMethod in obPaymentMethodList %}
+                    <div class="form-check{% if not loop.first %} mt-2{% endif %}">
+                        <input class="form-check-input" type="radio" name="payment_method_id" id="payment-method-{{ obPaymentMethod.id }}" value="{{ obPaymentMethod.id }}" required {% if loop.first %}checked{% endif %}>
+                        <label class="form-check-label" for="payment-method-{{ obPaymentMethod.id }}">
+                            {{ obPaymentMethod.name }}
+                        </label>
                     </div>
-                </div>
+                {% endfor %}
             </fieldset>
         {% endif %}
         <div class="form-group">

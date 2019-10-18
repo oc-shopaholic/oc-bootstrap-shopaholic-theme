@@ -3,8 +3,11 @@
 }
 
 .category__item {
+  margin-top: .5em;
 
   @media (min-width: 992px) {
+    margin-top: 0;
+
     &_active,
     &:hover:not(&_active) {
       background-color: rgba(255, 255, 255, .2);

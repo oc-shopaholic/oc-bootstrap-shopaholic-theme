@@ -1,6 +1,6 @@
-const mix = require('laravel-mix');
-const stylelint = require('laravel-mix-stylelint');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+const mix = require('laravel-mix')
+const stylelint = require('laravel-mix-stylelint')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,21 +13,21 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
  */
 
 mix.webpackConfig({
-	plugins: [
-		new StyleLintPlugin({
-			files: './partials/**/*.css',
-			configFile: '.stylelintrc',
-		}),
-	]
-});
+  plugins: [
+    new StyleLintPlugin({
+      files: './partials/**/*.css',
+      configFile: '.stylelintrc'
+    })
+  ]
+})
 
-mix.setPublicPath('assets/');
+mix.setPublicPath('assets/')
 
-mix.stylelint();
+mix.stylelint()
 
 mix.js('./common.js', 'js')
   .sass('./common.scss', 'css').options({
     processCssUrls: false
-});
+  })
 
-mix.version();
+mix.version()

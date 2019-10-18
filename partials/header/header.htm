@@ -1,6 +1,6 @@
 <header class="header container-fluid fixed-top">
     <nav class="container navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand mr-5" {% if this.page.id != 'index' %}href="{{ 'index'|page }}"{% endif %}>{{ this.theme.site_name }}</a>
+        <a class="navbar-brand mr-5" {% if this.page.id != 'index' %}href="{{ 'index'|page }}" aria-label="Go to main page"{% endif %}>{{ this.theme.site_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,10 +11,10 @@
                 {% for obMenuItem in arMenuItemList if obMenuItem.viewBag.isHidden == false %}
                     {% if obMenuItem.items is not empty %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ obMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive or obMenuItem.isChildActive %}active{% endif %}" href="{{ obMenuItem.url }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle {{ obMenuItem.viewBag.cssClass }} {% if obMenuItem.isActive or obMenuItem.isChildActive %}active{% endif %}" href="{{ obMenuItem.url }}" id="navbarDropdown-{{ loop.index }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ obMenuItem.title }}
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-{{ loop.index }}">
                                 {% for obChildMenuItem in obMenuItem.items %}
                                     {% if obChildMenu.viewBag.isHidden == false %}
                                         <a class="dropdown-item {{ obChildMenuItem.viewBag.cssClass }} {% if obChildMenuItem.isActive %}active{% endif %}" href="{{ obChildMenuItem.url }}">
@@ -46,13 +46,13 @@
             {% if this.theme.facebook_link is not empty or this.theme.instagram_link is not empty or this.theme.twitter_link is not empty %}
                 <ul class="col-12 col-lg-auto order-1 order-lg-0 social-icon__list">
                     {% if this.theme.facebook_link is not empty %}
-                        <li class="social-icon__item"><a href="{{ this.theme.facebook_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-facebook fa-fw"></i></a></li>
+                        <li class="social-icon__item"><a href="{{ this.theme.facebook_link }}" class="social-icon__link" role="button" aria-label="Go to facebook plugin page"><i class="fa fa-lg fa-facebook fa-fw"></i></a></li>
                     {% endif %}
                     {% if this.theme.instagram_link is not empty %}
-                        <li class="social-icon__item"><a href="{{ this.theme.instagram_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-instagram fa-fw"></i></a></li>
+                        <li class="social-icon__item"><a href="{{ this.theme.instagram_link }}" class="social-icon__link" role="button" aria-label="Go to instagram plugin page"><i class="fa fa-lg fa-instagram fa-fw"></i></a></li>
                     {% endif %}
                     {% if this.theme.twitter_link is not empty %}
-                        <li class="social-icon__item"><a href="{{ this.theme.twitter_link }}" class="social-icon__link" role="button"><i class="fa fa-lg fa-twitter fa-fw"></i></a></li>
+                        <li class="social-icon__item"><a href="{{ this.theme.twitter_link }}" class="social-icon__link" role="button" aria-label="Go to twitter plugin page"><i class="fa fa-lg fa-twitter fa-fw"></i></a></li>
                     {% endif %}
                 </ul>
             {% endif %}

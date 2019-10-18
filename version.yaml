@@ -4,3 +4,4 @@
 1.1.0: Updated component properties. Updated README file.
 1.1.1: Fixed error in validation script (Checkout form).
 1.1.2: Added stylelint and eslint files.
+1.2.0: Updated npm dependences.

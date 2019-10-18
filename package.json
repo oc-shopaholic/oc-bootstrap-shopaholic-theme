@@ -11,8 +11,10 @@
   },
   "devDependencies": {
     "cross-env": "^5.1",
-    "laravel-mix": "^2.0",
+    "laravel-mix": "^4.0.14",
     "laravel-mix-stylelint": "^0.2.0",
+    "sass": "^1.23.0",
+    "sass-loader": "^7.3.1",
     "stylelint": "^9.7.0",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-config-standard": "^18.2.0",
@@ -20,9 +22,9 @@
     "stylelint-webpack-plugin": "^0.10.5"
   },
   "dependencies": {
-    "bootstrap": "^4.1",
+    "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "popper.js": "^1.14.3",
     "stylelint-scss": "^3.3.2"
   }
