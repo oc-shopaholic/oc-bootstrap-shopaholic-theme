@@ -5,3 +5,4 @@
 1.1.1: Fixed error in validation script (Checkout form).
 1.1.2: Added stylelint and eslint files.
 1.2.0: Updated npm dependences.
+1.3.0: Added loading="lazy" attribute to images
