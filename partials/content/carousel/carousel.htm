@@ -9,7 +9,7 @@
         <div class="carousel-inner">
             {% for obImage in arImageList %}
             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                <img class="d-block w-100 carousel-item-img" src="{{ obImage.image|media }}" alt="{{ obImage.title }}">
+                <img class="d-block w-100 carousel-item-img" src="{{ obImage.image|media }}" alt="{{ obImage.title }}" loading="lazy">
                 <div class="carousel-caption">
                     <h5 class="mb-3 carousel-item__title">{{ obImage.title }}</h5>
                     <p class="d-none d-md-block">{{ obImage.description }}</p>
