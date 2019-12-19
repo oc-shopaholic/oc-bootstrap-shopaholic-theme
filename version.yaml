@@ -6,3 +6,4 @@
 1.1.2: Added stylelint and eslint files.
 1.2.0: Updated npm dependences.
 1.3.0: Added loading="lazy" attribute to images
+1.4.0: Added support of wildcard params to catalog page
