@@ -1,15 +1,12 @@
 {% spaceless %}
 
-{# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
-{# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 {# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
-
-{% set obCategory = CategoryPage.get() %}
-{% set obMainCategory = MainCategoryPage.get() %}
-{% set obActiveCategory = obCategory.isNotEmpty() ? obCategory : obMainCategory %}
 
 {# Get product collection #}
 {% set obProductList = ProductList.make().active().sort(ProductList.getSorting()).category(obActiveCategory.id, true) %}
+{% if obBrand.isNotEmpty() %}
+    {% set obProductList = obProductList.brand(obBrand.id) %}
+{% endif %}
 
 {# Get array with pagination buttons #}
 {% set iPage = Pagination.getPageFromRequest() %}

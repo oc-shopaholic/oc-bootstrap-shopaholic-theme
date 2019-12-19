@@ -25,7 +25,7 @@
                 {% set obProduct = obOffer.product %}
                 <tr class="cart__item {% if obCartPosition.quantity > obOffer.quantity %}bg-danger{% endif %}" data-position-id="{{ obCartPosition.id }}" data-offer-id="{{ obOffer.id }}">
                     <td class="cart__picture align-middle">
-                        <a href="{{ obProduct.getPageUrl('product') }}" class="cart__img-wrap d-block" aria-label="Read more about {{ obProduct.name }}">
+                        <a href="{{ obProduct.getPageUrl('catalog') }}" class="cart__img-wrap d-block" aria-label="Read more about {{ obProduct.name }}">
                             {% if obProduct.preview_image is not empty %}
                                 <img class="cart__img" src="{{ obProduct.preview_image.getThumb(400, 400, {quality: 80}) }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}" loading="lazy">
                             {% else %}
@@ -34,7 +34,7 @@
                         </a>
                     </td>
                     <td class="align-middle">
-                        <a class="cart__product-name font-weight-bold d-block mb-2" href="{{ obProduct.getPageUrl() }}">
+                        <a class="cart__product-name font-weight-bold d-block mb-2" href="{{ obProduct.getPageUrl('catalog') }}">
                             {{ obProduct.name }}
                         </a>
                         <a href="{{ obProduct.category.getPageUrl('catalog') }}" class="cart__category-product-column text-dark">
