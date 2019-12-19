@@ -2,10 +2,12 @@
     <nav class="container" aria-label="breadcrumb">
         <ol class="breadcrumb pl-0 pr-0">
             {% for item in arBreadcrumbs %}
-                {% if loop.last %}
-                    <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
-                {% else %}
-                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ item.url }}">{{ item.name }}</a></li>
+                {% if item.name is not empty and item.url is not empty %}
+                    {% if loop.last %}
+                        <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+                    {% else %}
+                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ item.url }}">{{ item.name }}</a></li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </ol>

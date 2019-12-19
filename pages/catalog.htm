@@ -1,17 +1,33 @@
 title = "Catalog"
-url = "/:main_category/:category?"
+url = "/:category*/:slug?"
 layout = "main"
 is_hidden = 0
 
-[CategoryPage]
+[CategoryPage MainCategoryPage]
 slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 0
+
+[CategoryPage]
+slug = "{{ :slug }}"
 slug_required = 0
 smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
 
-[CategoryPage MainCategoryPage]
-slug = "{{ :main_category }}"
-slug_required = 1
+[BrandPage]
+slug = "{{ :slug }}"
+slug_required = 0
 smart_url_check = 0
+skip_error = 1
+
+[ProductPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+skip_error = 1
 
 [ProductList]
 sorting = "new"
@@ -39,38 +55,62 @@ last-more_button_limit = 1
 last_button_name = "Last"
 last_button_limit = 3
 ==
+function onInit() {
+    $obProductItem = $this->ProductPage->get();
+    $obBrandItem = $this->BrandPage->get();
+    $obCategoryItem = $this->CategoryPage->get();
+    $obMainCategoryItem = $this->MainCategoryPage->get();
+    if (!empty($this->param('slug')) && empty($obProductItem) && empty($obBrandItem) && empty($obCategoryItem)) {
+        return $this->ProductPage->getErrorResponse();
+    }
+
+    $obActiveCategoryItem = !empty($obCategoryItem) ? $obCategoryItem : $obMainCategoryItem;
+    $arBreadcrumbs = [];
+    if (!empty($obProductItem)) {
+        $arBreadcrumbs[] = ['name' => $obProductItem->name, 'url' => $obProductItem->getPageUrl('catalog')];
+    }
+
+    if (!empty($obBrandItem)) {
+        $arBreadcrumbs[] = ['name' => $obBrandItem->name, 'url' => $obBrandItem->getPageUrl('catalog')];
+    }
+
+    if (!empty($obActiveCategoryItem)) {
+        $obCurrentCategory = $obActiveCategoryItem;
+        while($obCurrentCategory->isNotEmpty()) {
+            $arBreadcrumbs[] = ['name' => $obCurrentCategory->name, 'url' => $obCurrentCategory->getPageUrl('catalog', ['slug'])];
+            $obCurrentCategory = $obCurrentCategory->parent;
+        }
+    }
+
+    $arBreadcrumbs[] = ['name' => 'Home', 'url' => \Cms\Classes\Page::url('index')];
+    $arBreadcrumbs = array_reverse($arBreadcrumbs);
+
+    $this['obProduct'] = $obProductItem;
+    $this['obBrand'] = $obBrandItem;
+    $this['obActiveCategory'] = $obActiveCategoryItem;
+    $this['arBreadcrumbs'] = $arBreadcrumbs;
+}
+==
 {# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 {# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 {# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 
-{% set obCategory = CategoryPage.get() %}
-{% set obMainCategory = MainCategoryPage.get() %}
-{% set obActiveCategory = obCategory.isNotEmpty() ? obCategory : obMainCategory %}
-
-{% if obCategory is not empty %}
-    {% set arBreadcrumbs = [
-        {'name': 'Home', 'url': 'index'|page},
-        {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')},
-        {'name': obCategory.name, 'url': obCategory.getPageUrl('catalog')}
-    ] %}
-    {% set arSEOParams = {'main_category': obMainCategory, 'category': obCategory} %}
-{% else %}
-    {% set arBreadcrumbs = [
-        {'name': 'Home', 'url': 'index'|page},
-        {'name': obMainCategory.name, 'url': obMainCategory.getPageUrl('catalog')}
-    ] %}
-    {% set arSEOParams = {'main_category': obMainCategory} %}
-{% endif %}
+{% set arSEOParams = {'main_category': obMainCategory, 'category': obCategory, 'product': obProduct} %}
 
 {% if seo_toolbox_is_available %}
     {% put seo_tags %}
-    {% component 'SeoToolbox' model=obActiveCategory params=arSEOParams %}
+    {% component 'SeoToolbox' model=obProduct.isNotEmpty() ? obProduct : obActiveCategory params=arSEOParams %}
     {% endput %}
 {% endif %}
 
-{% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
-{% partial 'product/catalog-panel/catalog-panel' obMainCategory=obMainCategory obActiveCategory=obCategory label='catalog-product-list' %}
-{% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
-{% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
-{% partial 'product/catalog-product-list/catalog-product-list' %}
-{% partial 'content/wysiwyg/wysiwyg' sContent=obActiveCategory.description %}
+{% if obProduct.isNotEmpty() %}
+    {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+    {% partial 'product/product-card-detailed/product-card-detailed' obProduct=obProduct %}
+{% else %}
+    {% partial 'content/picture-preview-top/picture-preview-top' obImage=obActiveCategory.preview_image %}
+    {% partial 'product/catalog-panel/catalog-panel' obActiveCategory=obActiveCategory label='catalog-product-list' %}
+    {% partial 'navigation/breadcrumbs/breadcrumbs' arBreadcrumbs=arBreadcrumbs %}
+    {% partial 'content/text-preview/text-preview' sPreviewText=obActiveCategory.preview_text %}
+    {% partial 'product/catalog-product-list/catalog-product-list' %}
+    {% partial 'content/wysiwyg/wysiwyg' sContent=obActiveCategory.description %}
+{% endif %}

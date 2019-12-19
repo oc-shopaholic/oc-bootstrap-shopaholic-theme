@@ -1,6 +1,13 @@
 {# @var obActiveCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
 {# @var obMainCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
-{# @var obCategory \Lovata\Shopaholic\Classes\Item\CategoryItem #}
+
+{% if obActiveCategory.children.isNotEmpty() %}
+    {% set obMainCategory = obActiveCategory %}
+{% elseif obActiveCategory.parent.isNotEmpty() %}
+    {% set obMainCategory = obActiveCategory.parent %}
+{% else %}
+    {% set obMainCategory = obActiveCategory %}
+{% endif %}
 
 <section class="category">
     <div class="container">

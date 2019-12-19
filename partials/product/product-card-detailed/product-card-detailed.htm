@@ -58,7 +58,7 @@
                 <span class="font-weight-bold">
                     Brand:
                 </span>
-                {{ obProduct.brand.name }}
+                <a href="{{ obProduct.brand.getPageUrl('catalog') }}" class="product-detailed__category-link">{{ obProduct.brand.name }}</a>
             </p>
             {% endif %}
             <p class="product-detailed__category">
