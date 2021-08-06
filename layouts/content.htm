@@ -11,8 +11,8 @@ code = "footer-menu"
 <?php
 function onInit()
 {
-    $this['path_css'] = mix('css/common.css', 'themes/'.\Cms\Classes\Theme::getActiveTheme()->getDirName().'/assets');
-    $this['path_js'] = mix('js/common.js', 'themes/'.\Cms\Classes\Theme::getActiveTheme()->getDirName().'/assets');
+    $this['path_css'] = mix('css/common.css', 'themes/'.\Cms\Classes\Theme::getActiveTheme()->getParentTheme()->getDirName().'/assets');
+    $this['path_js'] = mix('js/common.js', 'themes/'.\Cms\Classes\Theme::getActiveTheme()->getParentTheme()->getDirName().'/assets');
     $this['cart_is_available'] = false;
 
     /**
